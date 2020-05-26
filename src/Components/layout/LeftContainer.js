@@ -1,7 +1,8 @@
 import React from "react";
 
 const LeftContainer = (props) => {
-    var greetingsText = "Grand Hotel Codecool"
+    var greetingsText = "Welcome to Grand Hotel Codecool!";
+    var text = "We at Codecool would love to see our rooms and comfy chairs again. ";
 
     return (<React.Fragment>
         <div className="row">
@@ -13,7 +14,7 @@ const LeftContainer = (props) => {
             <div style={shading}></div>
         </div>
         <div className="col-6">
-        <h1 style={centerElement}><b>{greetingsText}</b></h1>
+        <h1 style={textStyle}><b>{greetingsText.toUpperCase()}</b><p />{text}</h1>
         </div>
         </div>
     </React.Fragment>)
@@ -22,8 +23,12 @@ const LeftContainer = (props) => {
 export default LeftContainer;
 
 const imageStyle = {
+    backgroundSize: "cover",
     width: "100%",
-    height: "100%",
+    // height: "100%",
+    backgroundPosition: "50% 50%",
+    backgroundRepeat: "no-repeat",
+    position: "relative",
 }
 
 const shading = {
@@ -35,11 +40,11 @@ const shading = {
     background: "linear-gradient(to right, rgba(255,255,255,0) 0%, #fff 97%, #fff 100%)",
 }
 
-const centerElement = {
+const textStyle = {
     zIndex: "1",
     color: "black",
-    textShadow: "0 0 10px rgba(0,0,0,0.4)",
+    // textShadow: "0 0 10px rgba(0,0,0,0.4)",
     fontFamily: "Alegreya Sans SC, Alata",
-    fontSize: "1em",
+    fontSize: "2em",
     textAlign: "left",
 }

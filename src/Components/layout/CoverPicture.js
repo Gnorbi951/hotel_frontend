@@ -39,7 +39,8 @@ const centerElement = {
   color: "white",
   textShadow: "0 0 18px rgba(0,0,0,0.4)",
   fontFamily: "Alegreya Sans SC, Alata",
-  fontSize: "70px",
+  // fontSize: "70px",
+  fontSize: "5em",
   textAlign: "center",
 };
 

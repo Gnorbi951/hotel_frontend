@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <React.Fragment>
         <CoverPicture />
-        <div className="container-fluid">
+        <div className="container-fluid" style={{ maxWidth: "3000px", padding: "0" }}>
             <LeftContainer />
         </div>
       <div>This is the homepage</div>
