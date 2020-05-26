@@ -20,7 +20,7 @@ const NavBarHeader = styled.header`
   background-color: #2b2b2b;
   display: flex;
   flex-direction: row;
-  justify-content: flex-begin;
+  /* justify-content: flex-begin; */
   margin: 0;
 `;
 
