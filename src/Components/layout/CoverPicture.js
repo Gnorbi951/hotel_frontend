@@ -12,9 +12,6 @@ const CoverPicture = (props) => {
         <h1 style={centerElement}><b>{greetingsText}</b></h1>
         </div>
         </React.Fragment>)
-
-
-    // <h1 style={imageStyle} key="coverImage">Whatever</h1>
 }
 
 export default CoverPicture;
