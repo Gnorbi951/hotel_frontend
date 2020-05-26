@@ -30,10 +30,9 @@ const NavBarHeader = styled.header`
 `;
 
 const LoginIcon = styled(Link)`
+  font-size: 1.8rem;
   color: #ffffff;
   margin-left: auto;
-  margin-top: auto;
-  margin-bottom: auto;
   &:hover {
     transition: 350ms;
     color: #a9a9a9;
