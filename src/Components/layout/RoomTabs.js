@@ -26,7 +26,7 @@ const RoomTabs = (props) => {
     return (<React.Fragment>
             {rooms ?
                 rooms.map((room, index) => (
-                    <button type="button" className="btn btn-secondary" data-id={room.id}>{room.name}</button>
+                    <button type="button" key={index} className="btn btn-secondary" data-id={room.id}>{room.name}</button>
                 )) : (<h1>Loading</h1>)
             }
             {rooms ?
