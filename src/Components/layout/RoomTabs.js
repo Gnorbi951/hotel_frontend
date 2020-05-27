@@ -1,22 +1,37 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import LeftContainer from "./LeftContainer";
+import axios from "axios";
+import {forEach} from "react-bootstrap/cjs/ElementChildren";
 
 const RoomTabs = (props) => {
-    const addListenters = () => {
+    const [rooms, setRooms] = useState(null);
+
+    useEffect(() => {
+        axios
+            .get("http://localhost:8080/category/all")
+            .then((res) => {
+                setRooms(res.data);
+                // console.log(res.data);
+                // console.log(rooms);
+            });
+    }, [])
+
+    let addListenters = () => {
         let buttons = document.getElementsByClassName("btn");
         for (let button of buttons) {
             button.addEventListener("click", () => alert(button.dataset.id))
         }
     }
 
-    useEffect(addListenters, []);
+    useEffect(addListenters, [rooms]);
 
     return (<React.Fragment>
-            <button type="button" className="btn btn-secondary" data-id="1">First</button>
-            <button type="button" className="btn btn-secondary" data-id="2">Second</button>
-            <LeftContainer />
+            {rooms ?
+                rooms.map((room, index) => (
+                    <button type="button" className="btn btn-secondary" data-id={room.id}>{room.name}</button>
+                )) : (<h1>Loading</h1>)
+            }
     </React.Fragment>
     )}
-
 
 export default RoomTabs;
