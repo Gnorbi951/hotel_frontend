@@ -43,7 +43,7 @@ const RoomTabs = (props) => {
             <button
               type="button"
               key={index}
-              className="btn btn-secondary"
+              className="btn btn-secondary card-text"
               data-id={room.id}
               style={{margin: "10px"}}
             >
