@@ -15,6 +15,7 @@ const LeftContainer = (props) => {
                 <div className="col-6" >
                     <img className="half-page-image"
                          src={window.location.origin + "/pictures/cover3.png"}
+                         alt="right_image"
                     />
                     <div style={leftSideShading} />
                 </div>
