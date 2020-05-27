@@ -6,6 +6,8 @@ import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
 import Rooms from "./Components/Rooms";
 
+document.title = "Grand Hotel Codecool";
+
 const App = () => {
   return (
     <React.Fragment>

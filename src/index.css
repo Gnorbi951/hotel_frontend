@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.card-text {
+  padding-top: 2em;
+  z-index: 1;
+  color: black;
+  font-family: Alegreya Sans SC, Alata, sans-serif;
+  font-size: 2em;
+  text-align: left;
+}
+
+.half-page-image {
+  /*background-size: cover;*/
+  width: 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  position: relative;
+}
