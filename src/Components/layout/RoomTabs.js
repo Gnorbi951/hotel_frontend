@@ -46,14 +46,14 @@ const RoomTabs = (props) => {
             {rooms && currentRoom ?
                 (
                     <div id="room-description">
-                        <RoomDetails props={currentRoom}/>
+                        <RoomDetails currentRoom={currentRoom}/>
                     </div>
                 ):
                 (
                     <div>Loading</div>
                 )
             }
-            
+
     </React.Fragment>
     )}
 
