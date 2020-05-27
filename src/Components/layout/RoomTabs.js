@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import RoomDetails from "./RoomDetails";
 
 const RoomTabs = (props) => {
     const [rooms, setRooms] = useState(null);
+    const [currentRoom, setCurrentRoom] = useState(null);
 
     useEffect(() => {
         axios
@@ -11,30 +13,19 @@ const RoomTabs = (props) => {
                 setRooms(res.data);
                  console.log(res.data);
                 // console.log(rooms);
+                setCurrentRoom(res.data[0]);
             });
     }, [])
 
     const changeRoomView = (buttonId) => {
-        const roomDescriptionContainer = document.getElementById("room-description");
-        roomDescriptionContainer.innerHTML = "";
-        let roomDetails;
+        let roomDetailsInfo;
         for (let room of rooms) {
             if (room.id === Number(buttonId)) {
-                roomDetails = room;
+                roomDetailsInfo = room;
                 break;
             }
         }
-        let roomHtml = `
-        <div>
-            <h3>${roomDetails.name}</h3>
-            <h4>Description: ${roomDetails.description}</h4>
-            <h4>${roomDetails.capacity}</h4>
-            <h4>${roomDetails.size} squaremeters</h4>
-        </div>
-        `;
-        let node = document.createRange().createContextualFragment(roomHtml);
-        roomDescriptionContainer.append(node);
-
+        setCurrentRoom(roomDetailsInfo);
     }
 
     let addListenters = () => {
@@ -52,23 +43,17 @@ const RoomTabs = (props) => {
                     <button type="button" key={index} className="btn btn-secondary" data-id={room.id}>{room.name}</button>
                 )) : (<h1>Loading</h1>)
             }
-            {rooms ?
+            {rooms && currentRoom ?
                 (
                     <div id="room-description">
-                        <div>
-                        <h3>{rooms[0].name}</h3>
-                        <h4>Description: {rooms[0].description}</h4>
-                        <h4>{rooms[0].capacity}</h4>
-                        <h4>{rooms[0].size} squaremeters</h4>
-                    </div>
+                        <RoomDetails props={currentRoom}/>
                     </div>
                 ):
                 (
                     <div>Loading</div>
                 )
             }
-
-
+            
     </React.Fragment>
     )}
 
