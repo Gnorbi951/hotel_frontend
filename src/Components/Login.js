@@ -27,7 +27,7 @@ const Login = () => {
     value="submit"/>
                                     </div>
                                     <div id="register-link" className="text-right">
-                                        <a href="#" className="text-info">Register here</a>
+                                        <a href="/register" className="text-info">Register here</a>
                                     </div>
                                 </form>
                             </div>
