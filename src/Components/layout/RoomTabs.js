@@ -54,6 +54,7 @@ const RoomTabs = (props) => {
           <h1>Loading</h1>
         )}
       </div>
+      <br />
       {rooms && currentRoom ? (
         <div id="room-description">
           <RoomDetails currentRoom={currentRoom} />

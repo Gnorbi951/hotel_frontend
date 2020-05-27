@@ -7,6 +7,11 @@ import ScrollAnimation from "react-animate-on-scroll";
 import "animate.css/animate.min.css";
 
 const Home = () => {
+    let leftTextHead = "Welcome to Grand Hotel Codecool!";
+    let leftText = "We at Codecool would love to see our rooms and comfy chairs again. Now for a little money, " +
+        "you can live the dream - the one you had before the COVID-19 pandemic. Come and see our new office!";
+
+
   return (
     <React.Fragment>
       <ScrollAnimation animateIn="fadeIn" animateOnce="true" offset="123">
@@ -17,7 +22,7 @@ const Home = () => {
         style={{ maxWidth: "3000px", padding: "0" }}
       >
         <ScrollAnimation animateIn="fadeIn">
-          <LeftContainer />
+          <LeftContainer textHeader={leftTextHead} textBody={leftText} />
         </ScrollAnimation>
         <ScrollAnimation animateIn="fadeIn">
           <RightContainer />

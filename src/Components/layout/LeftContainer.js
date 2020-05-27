@@ -1,10 +1,8 @@
 import React from "react";
 
 const LeftContainer = (props) => {
-  var greetingsText = "Welcome to Grand Hotel Codecool!";
-  var text =
-    "We at Codecool would love to see our rooms and comfy chairs again. Now for a little money, " +
-    "you can live the dream - the one you had before the COVID-19 pandemic. Come and see our new office!";
+  var greetingsText = props.textHeader;
+  var text = props.textBody;
 
   return (
     <div className="row" style={{ overflow: "hidden", marginTop: "2em" }}>
