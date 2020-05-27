@@ -1,4 +1,6 @@
 import React from "react";
+import ScrollAnimation from "react-animate-on-scroll";
+import "animate.css/animate.min.css";
 
 const CoverPicture = (props) => {
   var greetingsText = "Grand Hotel Codecool";
@@ -11,9 +13,11 @@ const CoverPicture = (props) => {
           style={imageStyle}
           alt="cover_picture"
         />
+        <ScrollAnimation animateIn="fadeIn" animateOnce="true" delay="0.1s" duration="2s" offset="124">
         <h1 style={centerElement}>
           <b>{greetingsText}</b>
         </h1>
+        </ScrollAnimation>
       </div>
     </React.Fragment>
   );
