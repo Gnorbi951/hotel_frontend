@@ -1,15 +1,16 @@
 import React from "react";
 
 const LeftContainer = (props) => {
-  var greetingsText = props.textHeader;
-  var text = props.textBody;
+  const greetingsText = props.textHeader;
+  const text = props.textBody;
+  const picture = props.image;
 
   return (
     <div className="row" style={{ overflow: "hidden", marginTop: "2em" }}>
       <div className="col-6">
         <img
           className="half-page-image"
-          src={window.location.origin + "/pictures/cover3.png"}
+          src={picture}
           alt="left_image"
         />
         <div style={rightSideShading} />

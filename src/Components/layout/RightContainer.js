@@ -1,10 +1,9 @@
 import React from "react";
 
 const LeftContainer = (props) => {
-  var greetingsText = "Welcome to Grand Hotel Codecool!";
-  var text =
-    "We at Codecool would love to see our rooms and comfy chairs again. Now for a little money, " +
-    "you can live the dream - the one you had before the COVID-19 pandemic. Come and see our new office!";
+  const greetingsText = props.textHeader;
+  const text = props.textBody;
+  const picture = props.image;
 
   return (
     <div className="row" style={{ overflow: "hidden", marginTop: "2em" }}>
@@ -18,7 +17,7 @@ const LeftContainer = (props) => {
       <div className="col-6">
         <img
           className="half-page-image"
-          src={window.location.origin + "/pictures/cover3.png"}
+          src={picture}
           alt="right_image"
         />
         <div style={leftSideShading} />
