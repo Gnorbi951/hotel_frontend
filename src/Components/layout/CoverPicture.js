@@ -13,10 +13,16 @@ const CoverPicture = (props) => {
           style={imageStyle}
           alt="cover_picture"
         />
-        <ScrollAnimation animateIn="fadeIn" animateOnce="true" delay="0.1s" duration="2s" offset="124">
-        <h1 style={centerElement}>
-          <b>{greetingsText}</b>
-        </h1>
+        <ScrollAnimation
+          animateIn="fadeIn"
+          animateOnce="true"
+          delay="0.1s"
+          duration="2s"
+          offset="124"
+        >
+          <h1 style={centerElement}>
+            <b>{greetingsText}</b>
+          </h1>
         </ScrollAnimation>
       </div>
     </React.Fragment>
