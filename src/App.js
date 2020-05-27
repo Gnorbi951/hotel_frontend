@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
 import Rooms from "./Components/Rooms";
+import Login from "./Components/Login";
 
 document.title = "Grand Hotel Codecool";
 
@@ -15,6 +16,7 @@ const App = () => {
         <Navbar />
         <Route exact path="/" component={Home} />
         <Route exact path="/rooms" component={Rooms} />
+        <Route exact path="/login" component={Login} />
       </Router>
     </React.Fragment>
   );
