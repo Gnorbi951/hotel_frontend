@@ -13,7 +13,7 @@ const Login = () => {
                                     <h3 className="text-center text-info">Login</h3>
                                     <div className="form-group">
                                         <label htmlFor="username" className="text-info">Username:</label><br/>
-                                        <input type="text" name="username" id="username" className="form-control"/>
+                                        <input autoComplete="off" type="text" name="username" id="username" className="form-control"/>
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="password" className="text-info">Password:</label><br/>
