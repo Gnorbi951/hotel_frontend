@@ -16,9 +16,9 @@ const CoverPicture = (props) => {
         <ScrollAnimation
           animateIn="fadeIn"
           animateOnce="true"
-          delay="0.1s"
-          duration="2s"
-          offset="124"
+          delay={5}
+          duration={1.5}
+          offset={100}
         >
           <h1 style={centerElement}>
             <b>{greetingsText}</b>
