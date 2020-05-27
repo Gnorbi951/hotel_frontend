@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from "react";
-import LeftContainer from "./LeftContainer";
 import axios from "axios";
-import {forEach} from "react-bootstrap/cjs/ElementChildren";
 
 const RoomTabs = (props) => {
     const [rooms, setRooms] = useState(null);
@@ -31,6 +29,18 @@ const RoomTabs = (props) => {
                     <button type="button" className="btn btn-secondary" data-id={room.id}>{room.name}</button>
                 )) : (<h1>Loading</h1>)
             }
+            {rooms ?
+                (
+                    <div id="room-description">
+                        <div>{rooms[0].description}</div>
+                    </div>
+                ):
+                (
+                    <div>Loading</div>
+                )
+            }
+
+
     </React.Fragment>
     )}
 
