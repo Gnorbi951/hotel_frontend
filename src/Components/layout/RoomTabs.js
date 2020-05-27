@@ -37,20 +37,23 @@ const RoomTabs = (props) => {
 
   return (
     <React.Fragment>
-      {rooms ? (
-        rooms.map((room, index) => (
-          <button
-            type="button"
-            key={index}
-            className="btn btn-secondary"
-            data-id={room.id}
-          >
-            {room.name}
-          </button>
-        ))
-      ) : (
-        <h1>Loading</h1>
-      )}
+      <div style={centerElement}>
+        {rooms ? (
+          rooms.map((room, index) => (
+            <button
+              type="button"
+              key={index}
+              className="btn btn-secondary"
+              data-id={room.id}
+              style={{margin: "10px"}}
+            >
+              {room.name}
+            </button>
+          ))
+        ) : (
+          <h1>Loading</h1>
+        )}
+      </div>
       {rooms && currentRoom ? (
         <div id="room-description">
           <RoomDetails currentRoom={currentRoom} />
@@ -63,3 +66,11 @@ const RoomTabs = (props) => {
 };
 
 export default RoomTabs;
+
+
+const centerElement = {
+  position: "absolute",
+  // top: "50%",
+  left: "50%",
+  transform: "translate(-50%, 0%)",
+};
