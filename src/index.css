@@ -13,7 +13,6 @@ code {
 }
 
 .card-text {
-  padding-top: 2em;
   z-index: 1;
   color: black;
   font-family: Alegreya Sans SC, Alata, sans-serif;
@@ -27,4 +26,10 @@ code {
   background-position: 50% 50%;
   background-repeat: no-repeat;
   position: relative;
+}
+
+.text-in-middle {
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }

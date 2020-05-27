@@ -7,7 +7,7 @@ const LeftContainer = (props) => {
 
     return (
         <div className="row" style={{overflow: "hidden", marginTop: "2em"}}>
-                <div className="col-6 align-bottom">
+                <div className="col-6 align-bottom text-in-middle">
                     <h1 className="text-center align-bottom card-text"><b>{greetingsText.toUpperCase()}</b><p />
                         {text}
                     </h1>

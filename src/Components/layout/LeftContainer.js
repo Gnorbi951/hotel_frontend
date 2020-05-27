@@ -13,7 +13,7 @@ const LeftContainer = (props) => {
                 />
                 <div style={rightSideShading} />
             </div>
-            <div className="col-6">
+            <div className="col-6 text-in-middle">
                 <h1 className="text-center align-bottom card-text"><b>{greetingsText.toUpperCase()}</b><p />
                     {text}
                 </h1>
