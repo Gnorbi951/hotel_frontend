@@ -10,7 +10,7 @@ const Navbar = () => {
       <NavBarHeader>
         <MyLink to={"/"}>Home</MyLink>
         <MyLink to={"/rooms"}>Rooms</MyLink>
-        <LoginIcon to={"/"}>
+        <LoginIcon to={"/login"}>
           <FontAwesomeIcon icon={faSignInAlt} />
         </LoginIcon>
       </NavBarHeader>
