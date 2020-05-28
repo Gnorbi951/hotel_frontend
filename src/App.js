@@ -6,6 +6,7 @@ import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
 import Rooms from "./Components/Rooms";
 import Login from "./Components/Login";
+import Reservation from "./Components/Reservation";
 
 document.title = "Grand Hotel Codecool";
 
@@ -17,6 +18,7 @@ const App = () => {
         <Route exact path="/" component={Home} />
         <Route exact path="/rooms" component={Rooms} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/reservations" component={Reservation} />
       </Router>
     </React.Fragment>
   );
