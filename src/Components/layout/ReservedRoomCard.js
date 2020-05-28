@@ -1,7 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import ReactCardFlip from "react-card-flip";
-import axios from "axios";
-import index from "styled-components/dist/styled-components-macro.esm";
 
 const ReservedRoomCard = (props) => {
     const room = props.room.category;
@@ -22,7 +20,7 @@ const ReservedRoomCard = (props) => {
                     <h5 className="card-body gold-text-selection" onClick={setFlipCard}>
                         <img
                             src={room.imgUrl}
-                            alt={`  NO PICTURE AVAILABLE FOR ${room.name.toUpperCase()}`}
+                            alt={`NO PICTURE AVAILABLE FOR ${room.name.toUpperCase()}`}
                             style={{
                                 position: "absolute",
                                 top: "50%",
@@ -52,15 +50,15 @@ const ReservedRoomCard = (props) => {
                 >
                     <div className="card-body" onClick={setFlipCard}>
                         <div className="backdrop-container">
-                            <h5 className="card-title gold-text-selection" style={{
-                                textAlign: "center",
-                                top: "50%",
-                                right: "50%",
-                                transform: "translate(50%, 50%)"
-                            }}>
+                            <h2 className="card-title gold-text-selection" style={cardBackTitle}>
                                 {`${room.name.toUpperCase()}`}
-                            </h5>
-                            <p className="card-text overflow-hidden gold-text-selection">
+                            </h2>
+                            <p className="card-text overflow-hidden gold-text-selection"
+                            style={{
+                                color: "white",
+                                fontSize: "1.5em"
+                            }}
+                            >
                                 {room.description}
                             </p>
                         </div >
@@ -68,8 +66,6 @@ const ReservedRoomCard = (props) => {
                     </div>
                 </div>
         </>)
-
-
 
     return (
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
@@ -128,3 +124,11 @@ const frontDateStyle = {
     border: "15px",
     borderRadius: "5px",
 };
+
+const cardBackTitle = {
+    textShadow: "0 0 18px rgba(0,0,0,2)",
+    textAlign: "center",
+    top: "50%",
+    right: "50%",
+    color: "white",
+}
