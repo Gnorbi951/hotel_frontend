@@ -74,10 +74,11 @@ const centerElement = {
   // top: "50%",
   left: "50%",
   transform: "translate(-50%, 0%)",
-  margin: "0.5em"
+  margin: "0.5em",
+  whiteSpace: "nowrap"
 };
 
 const roomsBorderStyle = {
   border: "0.4em solid lightgrey",
   margin: "1.5em"
-}
+};

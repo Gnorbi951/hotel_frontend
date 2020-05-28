@@ -71,3 +71,9 @@ code {
   background-color: dimgrey !important;
   border-color: dimgrey !important;
 }
+
+#room_category_img {
+  max-height: 23rem;
+  max-width: 50rem;
+  object-fit: cover;
+}
