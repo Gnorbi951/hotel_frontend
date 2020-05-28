@@ -11,3 +11,63 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.card-text {
+  z-index: 1;
+  color: black;
+  font-family: Alegreya Sans SC, Alata, sans-serif;
+  font-size: 2em;
+  text-align: left;
+}
+
+.half-page-image {
+  /*background-size: cover;*/
+  width: 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.text-in-middle {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.right-side-picture-shade {
+  position: absolute;
+  right: -1px;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, #fff 97%, #fff 100%);
+}
+
+.left-side-picture-shade {
+  position: absolute;
+  left: -1px;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(to left, rgba(255,255,255,0) 0%, #fff 97%, #fff 100%);
+}
+
+.gold-text-selection::selection {
+  color: darkgoldenrod;
+}
+
+.btn .btn-secondary .card-text {
+  background-color: darkgoldenrod;
+}
+
+.btn-secondary {
+  color: #fff !important;
+  background-color: #a9a9a9 !important;
+  border-color: #a9a9a9 !important;
+}
+
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active, .btn-secondary.active, .open>.dropdown-toggle.btn-primary {
+  color: darkgoldenrod !important;
+  background-color: dimgrey !important;
+  border-color: dimgrey !important;
+}
