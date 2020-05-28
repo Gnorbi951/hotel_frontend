@@ -2,26 +2,34 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import ReservedRoomCard from "./layout/ReservedRoomCard";
 
-const Reservation = () => {
+const Reservation = (props) => {
     const [rooms, setRooms] = useState(null);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/room/allOccupiedRooms").then((res) => {
-            setRooms(res.data);
-            console.log(res.data);
+        console.log("steps into use effect");
+        axios.get("http://localhost:8080/room/allOccupiedRooms")
+            .then((res) => {
+                setRooms(res.data);
+                console.log("I was here");
+                console.log(res.data);
         });
     }, []);
+
+    // console.log(rooms);
 
     return (
         <div>
             <h1 className="text-in-middle gold-text-selection" style={mainTextStyle}>Your Reservations</h1>
             {rooms ? (
-                rooms.map((room) => <ReservedRoomCard room={room} />)
+                <div className="card-deck ml-5 mr-3 mt-5">
+                    {rooms.map((room) =>
+                        <ReservedRoomCard room={room}/>
+                )}
+                </div>
             ) : (
                 <div className="card-deck ml-5 mr-3 mt-5">
-                    <ReservedRoomCard room={null} />
-                    <ReservedRoomCard room={null} />
-                    <ReservedRoomCard room={null} />
+                    {/*<ReservedRoomCard room={null} />*/}
+                    You haven't reserved any rooms yet.
                 </div>
             )
             }

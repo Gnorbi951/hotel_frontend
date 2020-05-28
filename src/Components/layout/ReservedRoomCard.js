@@ -4,10 +4,10 @@ import axios from "axios";
 import index from "styled-components/dist/styled-components-macro.esm";
 
 const ReservedRoomCard = (props) => {
-    const room = props.room;
-    console.log(room);
+    const room = props.room.category;
 
     const [isFlipped, setIsFlipped] = useState(false);
+
     let setFlipCard = (e) => {
         e.preventDefault();
         isFlipped ? setIsFlipped(false) : setIsFlipped(true);
@@ -16,17 +16,30 @@ const ReservedRoomCard = (props) => {
 
     let cardFront = (
         <>
-            <div
-                // id={`${room.id}-front`}
-                id={index}
-                className="card border-secondary mt-1 mb-3 clearfix overflow-hidden "
-                style={cardStyle}
-            >
+            {room ? (
+                <div
+                    id={`${room.id}-front`}
+                    className="card border-secondary mt-1 mb-3 clearfix overflow-hidden "
+                    style={cardStyle}
+                >
                     <h5 className="card-body gold-text-selection" style={{ textAlign: "center" }} onClick={setFlipCard}>
                         You haven't reserved any rooms yet.
                     </h5>
 
-            </div>
+                </div>
+            ) : (
+                <div
+                    id={index}
+                    className="card border-secondary mt-1 mb-3 clearfix overflow-hidden "
+                    style={cardStyle}
+                >
+                    <h5 className="card-body gold-text-selection" style={{ textAlign: "center" }} onClick={setFlipCard}>
+                        You haven't reserved any rooms yet.
+                    </h5>
+
+                </div>
+            )}
+
         </>
     );
 
