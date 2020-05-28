@@ -8,11 +8,7 @@ const LeftContainer = (props) => {
   return (
     <div className="row" style={{ overflow: "hidden", marginTop: "2em" }}>
       <div className="col-6">
-        <img
-          className="half-page-image"
-          src={picture}
-          alt="left_image"
-        />
+        <img className="half-page-image" src={picture} alt="left_image" />
         <div className="right-side-picture-shade" />
       </div>
       <div className="col-6 text-in-middle">
