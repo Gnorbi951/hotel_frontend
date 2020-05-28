@@ -15,11 +15,7 @@ const LeftContainer = (props) => {
         </h1>
       </div>
       <div className="col-6">
-        <img
-          className="half-page-image"
-          src={picture}
-          alt="right_image"
-        />
+        <img className="half-page-image" src={picture} alt="right_image" />
         <div className="left-side-picture-shade" />
       </div>
     </div>
