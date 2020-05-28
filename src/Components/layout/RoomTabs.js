@@ -36,7 +36,7 @@ const RoomTabs = (props) => {
   useEffect(addListenters, [rooms]);
 
   return (
-    <React.Fragment>
+    <div style={roomsBorderStyle}>
       <div style={centerElement}>
         {rooms ? (
           rooms.map((room, index) => (
@@ -62,7 +62,7 @@ const RoomTabs = (props) => {
       ) : (
         <div>Loading</div>
       )}
-    </React.Fragment>
+    </div>
   );
 };
 
@@ -74,4 +74,10 @@ const centerElement = {
   // top: "50%",
   left: "50%",
   transform: "translate(-50%, 0%)",
+  margin: "0.5em"
 };
+
+const roomsBorderStyle = {
+  border: "0.4em solid lightgrey",
+  margin: "1.5em"
+}

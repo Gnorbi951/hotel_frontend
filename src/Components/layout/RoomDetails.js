@@ -7,7 +7,7 @@ const RoomDetails = (props) => {
 
 
   return (
-    <div>
+    <div style={{marginTop: "3em"}} >
         <RoomCategoryInfo currentRoom={currentRoom} />
       {/*<h3>{currentRoom.name}</h3>*/}
       {/*<h4>Description: {currentRoom.description}</h4>*/}
