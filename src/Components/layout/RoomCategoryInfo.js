@@ -13,9 +13,10 @@ const RoomCategoryInfo = (props) => {
 
     const reserveCurrentRoom = (buttonId) => {
         axios
-            .post(`http://localhost:8080/category/reserve/${buttonId}`)
+            .post(`http://localhost:8080/category/reserve/${currentRoom.id}`)
             .then(res => {
-                alert(`You have booked a ${currentRoom.name}`);
+                // TODO: check if reservation was successful.
+                alert(`You have booked a ${res.data.category.name}`);
             })
     };
 
