@@ -1,7 +1,25 @@
-import React from "react";
+import React, {useEffect} from "react";
+import axios from "axios";
 
 const RoomCategoryInfo = (props) => {
     let currentRoom = props.currentRoom;
+
+    let addListenters = () => {
+        let buttons = document.getElementsByClassName("btn");
+        for (let button of buttons) {
+            button.addEventListener("click", () => reserveCurrentRoom(button.dataset.id));
+        }
+    };
+
+    const reserveCurrentRoom = (buttonId) => {
+        axios
+            .post(`http://localhost:8080/category/reserve/${buttonId}`)
+            .then(res => {
+                alert(`You have booked a ${currentRoom.name}`);
+            })
+    };
+
+    useEffect(addListenters, [currentRoom]);
 
     let roomText = `${currentRoom.name} has capacity for ${currentRoom.capacity} people on ${currentRoom.size} square meters. ${currentRoom.description}`;
     return (
@@ -23,12 +41,8 @@ const RoomCategoryInfo = (props) => {
                     {roomText}
                 </h1>
                 <br />
-                <form
-                    action={`http://localhost:8080/category/reserve/${currentRoom.id}`}
-                    method="POST"
-                >
                     <button
-                        type="submit"
+                        type="button"
                         key={currentRoom.id}
                         className="btn btn-secondary card-text"
                         data-id={currentRoom.id}
@@ -36,7 +50,6 @@ const RoomCategoryInfo = (props) => {
                     >
                         Reserve
                     </button>
-                </form>
             </div>
         </div>
     );
