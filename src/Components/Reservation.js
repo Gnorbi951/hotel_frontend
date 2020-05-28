@@ -30,7 +30,7 @@ const Reservation = (props) => {
         ) : (
           <div className="card-deck ml-5 mr-3 mt-5">
             {/*<ReservedRoomCard room={null} />*/}
-            You haven't reserved any rooms yet.
+            Loading cards, please wait.
           </div>
         )}
       </ScrollAnimation>
