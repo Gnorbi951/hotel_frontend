@@ -7,9 +7,9 @@ const RoomCategoryInfo = (props) => {
     return (
         <div className="row" style={{ overflow: "hidden", margin: "2em" }}>
             <div className="col-6">
-                <img
+                <img id="room_category_img"
                     className="half-page-image"
-                    src={window.location.origin + "/pictures/cover3.png"}
+                    src={currentRoom.imgUrl}
                     alt="left_image"
                 />
                 <div className="right-side-picture-shade" />
