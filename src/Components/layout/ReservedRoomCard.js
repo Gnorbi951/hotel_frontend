@@ -14,7 +14,7 @@ const ReservedRoomCard = (props) => {
     <>
       <div
         id={`${room.id}-front`}
-        className="card border-secondary mt-1 mb-3 clearfix overflow-hidden "
+        className="card mt-1 mb-3 clearfix overflow-hidden "
         style={cardStyle}
       >
         <h5 className="card-body gold-text-selection" onClick={setFlipCard}>
@@ -40,7 +40,7 @@ const ReservedRoomCard = (props) => {
     <>
       <div
         id={`${room.id}-back`}
-        className="card border-secondary mt-1 mb-3 clearfix overflow-hidden"
+        className="card mt-1 mb-3 clearfix overflow-hidden"
         style={cardStyle}
       >
         <div className="card-body" onClick={setFlipCard}>
@@ -81,15 +81,14 @@ const cardStyle = {
   minHeight: "20rem",
   height: "20rem",
   backgroundColor: "dimgrey",
-  borderRadius: "8px",
+  border: "1px solid darkgoldenrod",
+  borderRadius: "3px",
   textAlign: "justify",
   boxShadow:
-    "  0 2.8px 2.2px rgba(200, 200, 200, 0.034),\n" +
-    "  0 6.7px 5.3px rgba(200, 200, 200, 0.048),\n" +
-    "  0 12.5px 10px rgba(200, 200, 200, 0.06),\n" +
-    "  0 22.3px 17.9px rgba(200, 200, 200, 0.072),\n" +
-    "  0 41.8px 33.4px rgba(200, 200, 200, 0.086),\n" +
-    "  0 100px 80px rgba(200, 200, 200, 0.12)",
+    "  0 2.8px 2.2px rgba(105,105,105, 0.034),\n" +
+    "  0 6.7px 5.3px rgba(105,105,105, 0.048),\n" +
+    "  0 12.5px 10px rgba(105,105,105, 0.06),\n" +
+    "  0 22.3px 17.9px rgba(105,105,105, 0.072)",
 };
 
 const frontRoomNameStyle = {
