@@ -5,7 +5,7 @@ const RoomCategoryInfo = (props) => {
     let currentRoom = props.currentRoom;
 
     let addListenters = () => {
-        let buttons = document.getElementsByClassName("btn");
+        let buttons = document.getElementsByClassName("reserve-btn");
         for (let button of buttons) {
             button.addEventListener("click", () => reserveCurrentRoom(button.dataset.id));
         }
@@ -44,7 +44,7 @@ const RoomCategoryInfo = (props) => {
                     <button
                         type="button"
                         key={currentRoom.id}
-                        className="btn btn-secondary card-text"
+                        className="btn btn-secondary card-text reserve-btn"
                         data-id={currentRoom.id}
                         style={buttonPlacementStyle}
                     >
