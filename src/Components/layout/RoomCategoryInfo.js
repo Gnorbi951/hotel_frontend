@@ -23,15 +23,20 @@ const RoomCategoryInfo = (props) => {
                     {roomText}
                 </h1>
                 <br />
-                <button
-                    type="button"
-                    key={currentRoom.id}
-                    className="btn btn-secondary card-text"
-                    data-id={currentRoom.id}
-                    style={buttonPlacementStyle}
+                <form
+                    action={`http://localhost:8080/category/reserve/${currentRoom.id}`}
+                    method="POST"
                 >
-                    Reserve
-                </button>
+                    <button
+                        type="submit"
+                        key={currentRoom.id}
+                        className="btn btn-secondary card-text"
+                        data-id={currentRoom.id}
+                        style={buttonPlacementStyle}
+                    >
+                        Reserve
+                    </button>
+                </form>
             </div>
         </div>
     );
