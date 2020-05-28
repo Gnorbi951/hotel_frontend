@@ -20,8 +20,17 @@ const CoverPicture = (props) => {
           duration={1.5}
           offset={100}
         >
-          <h1 style={centerElement}>
+          <h1 className="gold-text-selection" style={centerElement}>
             <b>{greetingsText}</b>
+            {/*<img*/}
+            {/*    src={window.location.origin + "/pictures/key.png"}*/}
+            {/*    style={{*/}
+            {/*      display: "absolute",*/}
+            {/*      bottom: "-100%",*/}
+            {/*      transform: "scale(0.2) translate(50%, 50%)",*/}
+            {/*    }}*/}
+            {/*    alt="our logo"*/}
+            {/*/>*/}
           </h1>
         </ScrollAnimation>
       </div>

@@ -17,8 +17,8 @@ const RoomCategoryInfo = (props) => {
             <div className="col-6 text-in-middle">
                 <h1 className="
                 {/*text-center*/}
-                 card-text">
-                    <b>{currentRoom.name.toUpperCase()}</b>
+                 card-text gold-text-selection">
+                    <b className="gold-text-selection">{currentRoom.name.toUpperCase()}</b>
                     <p />
                     {roomText}
                 </h1>

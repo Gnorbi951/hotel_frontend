@@ -16,8 +16,8 @@ const LeftContainer = (props) => {
         <div className="right-side-picture-shade" />
       </div>
       <div className="col-6 text-in-middle">
-        <h1 className="text-center align-bottom card-text">
-          <b>{greetingsText.toUpperCase()}</b>
+        <h1 className="text-center align-bottom card-text gold-text-selection">
+          <b className="gold-text-selection">{greetingsText.toUpperCase()}</b>
           <p />
           {text}
         </h1>
