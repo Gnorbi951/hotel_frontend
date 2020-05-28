@@ -7,11 +7,8 @@ const Reservation = (props) => {
   const [rooms, setRooms] = useState(null);
 
   useEffect(() => {
-    console.log("steps into use effect");
     axios.get("http://localhost:8080/room/allOccupiedRooms").then((res) => {
       setRooms(res.data);
-      console.log("I was here");
-      console.log(res.data);
     });
   }, []);
 
@@ -23,8 +20,8 @@ const Reservation = (props) => {
       <ScrollAnimation animateIn="fadeIn" delay={5} duration={1.5} offset={100}>
         {rooms ? (
           <div className="card-deck ml-5 mr-3 mt-5">
-            {rooms.map((room) => (
-              <ReservedRoomCard room={room} />
+            {rooms.map((room, index) => (
+              <ReservedRoomCard room={room} key={index} />
             ))}
           </div>
         ) : (
