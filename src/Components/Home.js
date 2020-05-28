@@ -7,11 +7,16 @@ import ScrollAnimation from "react-animate-on-scroll";
 import "animate.css/animate.min.css";
 
 const Home = () => {
-    let leftTextHead = "Welcome to Grand Hotel Codecool!";
-    let leftText = "We at Codecool would love to see our rooms and comfy chairs again. Now for a little money, " +
+    const leftTextHead = "Welcome to Grand Hotel Codecool!";
+    const rightTextHead = "Make sure to choose the right location!";
+    const leftText = "We at Codecool would love to see our rooms and comfy chairs again. Now for a little money, " +
         "you can live the dream - the one you had before the COVID-19 pandemic. Come and see our new office!";
+    const rightText = "Positioned in an unparalleled location, right in the heart of Budapest's Broadway, the" +
+        " property is surrounded by the city’s buzziest theatres, clubs, restaurants, and even the local Walk of Fame."
 
-    let pictureLocation = window.location.origin + "/pictures/cover3.png";
+
+    const leftPicture = window.location.origin + "/pictures/left_side.jpeg";
+    const rightPicture = window.location.origin + "/pictures/right_side.jpg";
 
   return (
     <React.Fragment>
@@ -21,10 +26,10 @@ const Home = () => {
         style={{ maxWidth: "3000px", padding: "0" }}
       >
         <ScrollAnimation animateIn="fadeIn">
-          <LeftContainer textHeader={leftTextHead} textBody={leftText} image={pictureLocation} />
+          <LeftContainer textHeader={leftTextHead} textBody={leftText} image={leftPicture} />
         </ScrollAnimation>
         <ScrollAnimation animateIn="fadeIn">
-          <RightContainer textHeader={leftTextHead} textBody={leftText} image={pictureLocation} />
+          <RightContainer textHeader={rightTextHead} textBody={rightText} image={rightPicture} />
         </ScrollAnimation>
         <ScrollAnimation animateIn="fadeIn">
           <RoomTabs />
