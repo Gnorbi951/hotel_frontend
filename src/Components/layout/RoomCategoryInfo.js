@@ -12,7 +12,7 @@ const RoomCategoryInfo = (props) => {
                     src={window.location.origin + "/pictures/cover3.png"}
                     alt="left_image"
                 />
-                <div style={rightSideShading} />
+                <div className="right-side-picture-shade" />
             </div>
             <div className="col-6 text-in-middle">
                 <h1 className="
@@ -39,15 +39,6 @@ const RoomCategoryInfo = (props) => {
 
 export default RoomCategoryInfo;
 
-const rightSideShading = {
-    position: "absolute",
-    right: "-1px",
-    top: "0",
-    height: "100%",
-    width: "50%",
-    background:
-        "linear-gradient(to right, rgba(255,255,255,0) 0%, #fff 97%, #fff 100%)",
-};
 
 const buttonPlacementStyle = {
     // position: "relative",
