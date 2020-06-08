@@ -22,7 +22,6 @@ const ReservedRoomCard = (props) => {
             src={room.imgUrl}
             alt={`NO PICTURE AVAILABLE FOR ${room.name.toUpperCase()}`}
             style={{
-              position: "absolute",
               top: "50%",
               left: "50%",
               transform: "translate(-50%, -50%)",
@@ -30,9 +29,33 @@ const ReservedRoomCard = (props) => {
             className="half-page-image"
           />
           <div style={frontRoomNameStyle}>{room.name}</div>
-          <div style={frontDateStyle}>Date of Stay: [object Object] :) ;)</div>
+          <div style={frontDateStyle}>
+            Date of Stay: placeholder(2020.01.01-2020.01.07)
+            ReservationID:placeholder(123213) asd
+          </div>
         </h5>
       </div>
+      <button
+        type="button"
+        class="btn btn-secondary card-text reserve-btn"
+        data-id="1"
+      >
+        Comfirm
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary card-text reserve-btn"
+        data-id="1"
+      >
+        Modify
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary card-text reserve-btn"
+        data-id="1"
+      >
+        Delete
+      </button>
     </>
   );
 
