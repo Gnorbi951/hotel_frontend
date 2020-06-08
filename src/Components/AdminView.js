@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import ReservedRoomCard from "./layout/ReservedRoomCard";
 import ScrollAnimation from "react-animate-on-scroll";
+import ReservedRoomDetailsForAdmin from "./layout/ReservedRoomDetailsForAdmin";
 
 const AdminView = (props) => {
   const [rooms, setRooms] = useState(null);
@@ -21,7 +21,7 @@ const AdminView = (props) => {
         {rooms ? (
           <div className="card-deck ml-5 mr-3 mt-5">
             {rooms.map((room, index) => (
-              <ReservedRoomCard room={room} key={index} />
+              <ReservedRoomDetailsForAdmin room={room} key={index} />
             ))}
           </div>
         ) : (
