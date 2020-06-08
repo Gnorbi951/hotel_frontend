@@ -15,7 +15,7 @@ const AdminView = (props) => {
   return (
     <div>
       <h1 className="text-in-middle gold-text-selection" style={mainTextStyle}>
-        Your Reservations
+        Reservations
       </h1>
       <ScrollAnimation animateIn="fadeIn" delay={5} duration={1.5} offset={100}>
         {rooms ? (
