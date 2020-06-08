@@ -3,12 +3,6 @@ import ReactCardFlip from "react-card-flip";
 
 const ReservedRoomCard = (props) => {
   const room = props.room.category;
-  const [isFlipped, setIsFlipped] = useState(false);
-
-  let setFlipCard = (e) => {
-    e.preventDefault();
-    isFlipped ? setIsFlipped(false) : setIsFlipped(true);
-  };
 
   let cardFront = (
     <>
@@ -17,7 +11,7 @@ const ReservedRoomCard = (props) => {
         className="card mt-1 mb-3 clearfix overflow-hidden "
         style={cardStyle}
       >
-        <h5 className="card-body gold-text-selection" onClick={setFlipCard}>
+        <h5 className="card-body gold-text-selection">
           <img
             src={room.imgUrl}
             alt={`NO PICTURE AVAILABLE FOR ${room.name.toUpperCase()}`}
@@ -30,8 +24,8 @@ const ReservedRoomCard = (props) => {
           />
           <div style={frontRoomNameStyle}>{room.name}</div>
           <div style={frontDateStyle}>
-            Date of Stay: placeholder(2020.01.01-2020.01.07)
-            ReservationID:placeholder(123213) asd
+            ReservationID:placeholder(123213) Date of Stay:
+            placeholder(2020.01.01-2020.01.07)
           </div>
         </h5>
       </div>
@@ -59,42 +53,7 @@ const ReservedRoomCard = (props) => {
     </>
   );
 
-  let cardBack = (
-    <>
-      <div
-        id={`${room.id}-back`}
-        className="card mt-1 mb-3 clearfix overflow-hidden"
-        style={cardStyle}
-      >
-        <div className="card-body" onClick={setFlipCard}>
-          <div className="backdrop-container">
-            <h2
-              className="card-title gold-text-selection"
-              style={cardBackTitle}
-            >
-              {`${room.name.toUpperCase()}`}
-            </h2>
-            <p
-              className="card-text overflow-hidden gold-text-selection"
-              style={{
-                color: "white",
-                fontSize: "1.5em",
-              }}
-            >
-              {room.description}
-            </p>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-
-  return (
-    <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-      <div>{cardFront}</div>
-      <div>{cardBack}</div>
-    </ReactCardFlip>
-  );
+  return <div>{cardFront}</div>;
 };
 
 export default ReservedRoomCard;
