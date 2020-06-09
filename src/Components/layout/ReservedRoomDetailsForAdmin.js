@@ -7,7 +7,7 @@ const ReservedRoomDetailForAdmin = (props) => {
   console.log(reservation);
 
   let addConfirmListener = () => {
-    let buttons = document.getElementsByClassName("confirm-btn"); //already tried: unique classname
+    let buttons = document.getElementsByClassName("confirm-btn");
     for (let button of buttons) {
       console.log(button.id);
       if (reservation.id == button.id) {
@@ -19,11 +19,9 @@ const ReservedRoomDetailForAdmin = (props) => {
 
   const confirmReservation = (reser) => {
     //axios.post(`http://localhost:8080//${currentRoom.id}`).then((res) => {
-    alert(`post request sent to path with data: ${reservation}`);
+    alert(`post request sent to path with id: ${reservation.id}`);
     //});
   };
-
-  useEffect(addConfirmListener, []);
 
   /*  
   let addModifyListener = () => {
@@ -40,23 +38,28 @@ const ReservedRoomDetailForAdmin = (props) => {
       // TODO: check if reservation was successful.
       alert(`You have booked a ${res.data.category.name}`);
     });
-  }; 
+  }; */
 
-  let addDeleteListenter = () => {
-    let buttons = document.getElementsByClassName("confirm-btn");
+  let addDeleteListener = () => {
+    let buttons = document.getElementsByClassName("delete-btn");
     for (let button of buttons) {
-      button.addEventListener("click", () =>
-        confirmReservation(button.dataset.id)
-      );
+      if (button.id == reservation.id) {
+        button.addEventListener("click", () =>
+          DeleteReservation(reservation.id)
+        );
+      }
     }
   };
 
-  const DeleteReservation = (buttonId) => {
-    axios.post(`http://localhost:8080//${currentRoom.id}`).then((res) => {
-      // TODO: check if reservation was successful.
-      alert(`You have booked a ${res.data.category.name}`);
-    });
-  }; */
+  const DeleteReservation = (reservationId) => {
+    //axios.post(`http://localhost:8080//${currentRoom.id}`).then((res) => {
+    // TODO: check if reservation was successful.
+    alert(`Delete request to path with id: ${reservationId}`);
+    //});
+  };
+
+  useEffect(addConfirmListener, []);
+  useEffect(addDeleteListener, []);
 
   let cardFront = (
     <>
@@ -75,7 +78,6 @@ const ReservedRoomDetailForAdmin = (props) => {
             type="button"
             key={"reservationIdPlaceholder"}
             class="btn btn-secondary card-text confirm-btn"
-            data-id={reservation.id}
             id={reservation.id}
           >
             Comfirm
@@ -83,15 +85,15 @@ const ReservedRoomDetailForAdmin = (props) => {
           <button
             type="button"
             key={"reservationIdPlaceholder"}
-            className="btn btn-secondary card-text reserve-btn"
-            data-id="2"
+            className="btn btn-secondary card-text confirm-btn"
+            id={reservation.id}
           >
             Modify
           </button>
           <button
             type="button"
-            class="btn btn-secondary card-text reserve-btn"
-            data-id="1"
+            class="btn btn-secondary card-text delete-btn"
+            id={reservation.id}
           >
             Delete
           </button>
