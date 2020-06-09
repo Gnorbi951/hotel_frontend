@@ -12,6 +12,7 @@ const Navbar = () => {
     console.log(scrollY);
   };
   window.addEventListener("scroll", getScrollY);
+
   return (
     <div
       style={{
