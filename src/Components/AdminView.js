@@ -4,11 +4,12 @@ import ScrollAnimation from "react-animate-on-scroll";
 import ReservedRoomDetailsForAdmin from "./layout/ReservedRoomDetailsForAdmin";
 
 const AdminView = (props) => {
-  const [rooms, setRooms] = useState(null);
+  const [reservations, setReservations] = useState(null);
 
   useEffect(() => {
+    //TODO: swich to reservation path
     axios.get("http://localhost:8080/room/allOccupiedRooms").then((res) => {
-      setRooms(res.data);
+      setReservations(res.data);
     });
   }, []);
 
@@ -18,16 +19,19 @@ const AdminView = (props) => {
         Reservations
       </h1>
       <ScrollAnimation animateIn="fadeIn" delay={5} duration={1.5} offset={100}>
-        {rooms ? (
+        {reservations ? (
           <div className="card-deck ml-5 mr-3 mt-5">
-            {rooms.map((room, index) => (
-              <ReservedRoomDetailsForAdmin room={room} key={index} />
+            {reservations.map((reservation, index) => (
+              <ReservedRoomDetailsForAdmin
+                reservation={reservation}
+                key={index}
+              />
             ))}
           </div>
         ) : (
           <div className="card-deck ml-5 mr-3 mt-5">
             {/*<ReservedRoomCard room={null} />*/}
-            Loading cards, please wait.
+            Loading reservations, please wait.
           </div>
         )}
       </ScrollAnimation>
