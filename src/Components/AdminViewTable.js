@@ -1,9 +1,11 @@
 import React, { useEffect, useState, Modal } from "react";
-import { Table } from "react-bootstrap";
+import { Table, Button, ButtonToolbar } from "react-bootstrap";
 import axios from "axios";
+import AddNewReservationModal from "./layout/AddNewReservationModal";
 
 const AdminViewTable = (props) => {
   const [reservations, setReservations] = useState(null);
+  const [addModalShow, setAddModalShow] = useState(false);
 
   useEffect(() => {
     //TODO: swich to reservation path
@@ -35,6 +37,13 @@ const AdminViewTable = (props) => {
               </tr>
             ))}
           </tbody>
+          <Button variant="primary" onClick={() => setAddModalShow(true)}>
+            New reservation
+          </Button>
+          <AddNewReservationModal
+            show={addModalShow}
+            onHide={() => setAddModalShow(false)}
+          />
         </Table>
       ) : (
         <div className="card-deck ml-5 mr-3 mt-5">
