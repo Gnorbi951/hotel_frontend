@@ -10,17 +10,17 @@ const AdminViewTable = (props) => {
   const [reservatedRooms, setReservatedRooms] = useState(null);
   const [modifyModalShow, setModifyModalShow] = useState(false);
 
+  const [resId, setResId] = useState(null);
+  const [category, setCategory] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [room, setRoom] = useState(null);
+
   useEffect(() => {
-    //TODO: swich to reservation path
     axios.get("http://localhost:8080/get-all-reserved-rooms").then((res) => {
       setReservations(res.data);
     });
-    // axios.get("http://localhost:8080/get-all-reservations").then((res) => {
-    //   setReservations(res.data);
-    // });
   }, []);
-
-  //console.log("anyam:" + reservations.id);
 
   return (
     <div>
@@ -48,10 +48,19 @@ const AdminViewTable = (props) => {
                 <td>{reservation.reservation.endDate}</td>
                 <td>{reservation.room.id}</td>
                 <td>
-                  <EditReservationModal
-                    show={addModalShow}
-                    onHide={() => setAddModalShow(false)}
-                  />
+                  <Button
+                    variant="primary"
+                    onClick={() => {
+                      setModifyModalShow(true);
+                      setResId(reservation.id);
+                      setCategory(reservation.reservation.category.name);
+                      setStartDate(reservation.reservation.startDate);
+                      setEndDate(reservation.reservation.endDate);
+                      setRoom(reservation.room.id);
+                    }}
+                  >
+                    Modify
+                  </Button>
                 </td>
               </tr>
             ))}
@@ -63,6 +72,15 @@ const AdminViewTable = (props) => {
           <AddNewReservationModal
             show={addModalShow}
             onHide={() => setAddModalShow(false)}
+          />
+          <EditReservationModal
+            resId={resId}
+            category={category}
+            startDate={startDate}
+            endDate={endDate}
+            room={room}
+            show={modifyModalShow}
+            onHide={() => setModifyModalShow(false)}
           />
         </Table>
       ) : (

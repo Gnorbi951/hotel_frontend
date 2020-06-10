@@ -11,6 +11,7 @@ const EditReservationModal = (props) => {
     //     setReservations(res.data);
     //   });
   };
+  const resId = props.resId;
 
   return (
     <Modal
@@ -21,7 +22,7 @@ const EditReservationModal = (props) => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Add new reservation
+          Modify reservation
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -30,17 +31,62 @@ const EditReservationModal = (props) => {
           <Row>
             <Col sm={6}>
               <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="name">
-                  <Form.Label>name</Form.Label>
+                <Form.Group controlId="id">
+                  <Form.Label>id</Form.Label>
                   <Form.Control
                     type="text"
-                    name="name"
+                    name="id"
                     required
                     disabled
-                    placeholder="Name"
+                    placeholder={resId}
                   ></Form.Control>
                 </Form.Group>
-                <Button type="submit">Add</Button>
+
+                <Form.Group controlId="category">
+                  <Form.Label>category</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="category"
+                    required
+                    defaultValue={props.category}
+                    placeholder="category"
+                  ></Form.Control>
+                </Form.Group>
+
+                <Form.Group controlId="startDate">
+                  <Form.Label>startDate</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="startDate"
+                    required
+                    defaultValue={props.startDate}
+                    placeholder="category"
+                  ></Form.Control>
+                </Form.Group>
+
+                <Form.Group controlId="endDate">
+                  <Form.Label>endDate</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="endDate"
+                    required
+                    defaultValue={props.endDate}
+                    placeholder="category"
+                  ></Form.Control>
+                </Form.Group>
+
+                <Form.Group controlId="room">
+                  <Form.Label>room</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="room"
+                    required
+                    defaultValue={props.room}
+                    placeholder="room"
+                  ></Form.Control>
+                </Form.Group>
+
+                <Button type="submit">Update</Button>
               </Form>
             </Col>
           </Row>
