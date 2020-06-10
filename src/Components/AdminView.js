@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Modal } from "react";
 import axios from "axios";
 import ScrollAnimation from "react-animate-on-scroll";
 import ReservedRoomDetailsForAdmin from "./layout/ReservedRoomDetailsForAdmin";

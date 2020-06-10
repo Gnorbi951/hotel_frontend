@@ -3,18 +3,15 @@ import axios from "axios";
 
 const ReservedRoomDetailForAdmin = (props) => {
   const reservation = props.reservation.category;
-  console.log(props.key);
   console.log(reservation);
 
   let addConfirmListener = () => {
     let buttons = document.getElementsByClassName("confirm-btn");
     for (let button of buttons) {
-      console.log(button.id);
       if (reservation.id == button.id) {
         button.addEventListener("click", () => confirmReservation(reservation));
       }
     }
-    console.log("listen");
   };
 
   const confirmReservation = (reser) => {
@@ -23,22 +20,21 @@ const ReservedRoomDetailForAdmin = (props) => {
     //});
   };
 
-  /*  
   let addModifyListener = () => {
-    let buttons = document.getElementsByClassName("confirm-btn");
+    let buttons = document.getElementsByClassName("modify-btn");
     for (let button of buttons) {
-      button.addEventListener("click", () =>
-        confirmReservation(button.dataset.id)
-      );
+      if (button.id == reservation.id) {
+        button.addEventListener("click", () => modifyReservation(reservation));
+      }
     }
   };
 
-  const modifyReservation = (buttonId) => {
-    axios.post(`http://localhost:8080//${currentRoom.id}`).then((res) => {
-      // TODO: check if reservation was successful.
-      alert(`You have booked a ${res.data.category.name}`);
-    });
-  }; */
+  const modifyReservation = (reser) => {
+    //axios.post(`http://localhost:8080//${currentRoom.id}`).then((res) => {
+    // TODO: check if reservation was successful.
+    alert(`Modification at ${reser.id}`);
+    // });
+  };
 
   let addDeleteListener = () => {
     let buttons = document.getElementsByClassName("delete-btn");
@@ -59,6 +55,7 @@ const ReservedRoomDetailForAdmin = (props) => {
   };
 
   useEffect(addConfirmListener, []);
+  useEffect(addModifyListener, []);
   useEffect(addDeleteListener, []);
 
   let cardFront = (
@@ -85,7 +82,7 @@ const ReservedRoomDetailForAdmin = (props) => {
           <button
             type="button"
             key={"reservationIdPlaceholder"}
-            className="btn btn-secondary card-text confirm-btn"
+            className="btn btn-secondary card-text modify-btn"
             id={reservation.id}
           >
             Modify

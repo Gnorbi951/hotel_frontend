@@ -8,6 +8,7 @@ import Rooms from "./Components/Rooms";
 import Login from "./Components/Login";
 import Reservation from "./Components/Reservation";
 import AdminView from "./Components/AdminView";
+import AdminViewTable from "./Components/AdminViewTable";
 
 document.title = "Grand Hotel Codecool";
 
@@ -20,7 +21,7 @@ const App = () => {
         <Route exact path="/rooms" component={Rooms} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/reservations" component={Reservation} />
-        <Route exact path="/admin" component={AdminView} />
+        <Route exact path="/admin" component={AdminViewTable} />
       </Router>
     </React.Fragment>
   );
