@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Modal, Button, Row, Col, Form } from "react-bootstrap";
 import axios from "axios";
 
-function AddReservationModal(props) {
+const EditReservationModal = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     alert(event.target.name.value);
-    //TODO:
-    // axios.post("http://localhost:8080/room/allOccupiedRooms").then((res) => {
+    //TODO:PUT
+    // axios.put("http://localhost:8080/room/allOccupiedRooms").then((res) => {
     //     setReservations(res.data);
     //   });
   };
@@ -36,6 +36,7 @@ function AddReservationModal(props) {
                     type="text"
                     name="name"
                     required
+                    disabled
                     placeholder="Name"
                   ></Form.Control>
                 </Form.Group>
@@ -50,5 +51,6 @@ function AddReservationModal(props) {
       </Modal.Footer>
     </Modal>
   );
-}
-export default AddReservationModal;
+};
+
+export default EditReservationModal;
