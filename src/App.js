@@ -20,7 +20,7 @@ const App = () => {
         <Route exact path="/rooms" component={Rooms} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/reservations" component={Reservation} />
-        <Route exact path="/booking" component={Booking} />
+        <Route path="/booking/:id" component={Booking} />
       </Router>
     </React.Fragment>
   );

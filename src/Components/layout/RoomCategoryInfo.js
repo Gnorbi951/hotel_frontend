@@ -51,7 +51,7 @@ const RoomCategoryInfo = (props) => {
         </h1>
         <br />
         <Link
-          to={"/booking"}
+          to={`/booking/${currentRoom.id}`}
           key={currentRoom.id}
           className="btn btn-secondary card-text reserve-btn"
           data-id={currentRoom.id}

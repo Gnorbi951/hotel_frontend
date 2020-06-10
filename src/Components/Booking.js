@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faCalendar, faSignInAlt, faUser} from "@fortawesome/free-solid-svg-icons";
+import {faCalendar, faUser} from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
 const OptionButton = styled.button`
@@ -33,11 +33,13 @@ const SearchButton = styled.div`
     padding: 0.4em 0.8em;
     float: left;
 `
-const Booking = () => {
+const Booking = (props) => {
     return (
         <div>
             <h1 className="text-in-middle gold-text-selection" style={mainTextStyle}>
                 Booking
+                <br/>
+                {props.match.params.id}
             </h1>
             <BookingDiv>
                 <MyButton title={"Guests"} icon={faUser}/>
