@@ -1,11 +1,13 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faCalendar, faUser} from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
-import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import Example from "./layout/Modal";
-import {Button, Modal} from "react-bootstrap";
+import axios from 'axios';
+import {CheckInModalContext} from "./context/CheckInModal";
+import {CheckOutModalContext} from "./context/CheckOutModal";
+import ScrollAnimation from "react-animate-on-scroll";
+import ReservedRoomCard from "./layout/ReservedRoomCard";
 
 const OptionButton = styled.button`
     border: 0.2em solid #fcad26;
@@ -38,72 +40,57 @@ const SearchButton = styled.div`
     float: left;
 `
 
-const onChange = date => console.log(date);
-const handleClick = () => {
-    console.log('The link was clicked.');
-}
-
 const Booking = (props) => {
-    // const [show, setShow] = useState(false);
-    //
-    // const handleClose = () => setShow(false);
-    // const handleShow = () => setShow(true);
+    const { handleShowIn,inDate } = useContext(CheckInModalContext);
+    const { handleShowOut,outDate} = useContext(CheckOutModalContext);
+    const [ resultRoom,setResultRoom] = useState(null);
 
+    const searchForAvailableRoom = (id,inDate,outDate) => {
+          axios
+            .get(`http://localhost:8080/room/first-available-category/${inDate}/${outDate}/${id}`)
+            .then((res) => {
+                setResultRoom(res.data)
+            });
+    }
+
+    const CustomButton = ({click,icon,title,date}) => {
+        return(
+            <OptionButton onClick={click}>
+                <FontAwesomeIcon icon={icon} size='2x'/>
+                <div>
+                    <b>{title}</b>
+                    <p>{date}</p>
+                </div>
+            </OptionButton>
+        )
+    }
 
     return (
         <div>
-            <h1 className="text-in-middle gold-text-selection" style={mainTextStyle}>
-                Booking
-                <br/>
-                {props.match.params.id}
-            </h1>
-            <BookingDiv>
-                <SearchButton>SEARCH</SearchButton>
-                <OptionButton onClick={() => { handleClick() }}>
-                    <FontAwesomeIcon icon={faUser} size='2x'/>
-                    <div>Guests</div>
-                </OptionButton>
-                <OptionButton onClick={() => { handleClick() }}>
-                    <FontAwesomeIcon icon={faCalendar} size='2x'/>
-                    <div>Check-in</div>
-                </OptionButton>
-                <OptionButton onClick={() => { handleClick() }}>
-                    <FontAwesomeIcon icon={faCalendar} size='2x'/>
-                    <div>Check-out</div>
-                </OptionButton>
-            </BookingDiv>
-
-
-
-            <Calendar
-                onChange={onChange}
-            />
-
-
-
-            {/*<Modal*/}
-            {/*    show={show}*/}
-            {/*    onHide={handleClose}*/}
-            {/*    backdrop="static"*/}
-            {/*    keyboard={false}*/}
-            {/*>*/}
-            {/*    <Modal.Header closeButton>*/}
-            {/*        <Modal.Title>Modal title</Modal.Title>*/}
-            {/*    </Modal.Header>*/}
-            {/*    <Modal.Body>*/}
-            {/*        I will not close if you click outside me. Don't even try to press*/}
-            {/*        escape key.*/}
-            {/*    </Modal.Body>*/}
-            {/*    <Modal.Footer>*/}
-            {/*        <Button variant="secondary" onClick={handleClose}>*/}
-            {/*            Close*/}
-            {/*        </Button>*/}
-            {/*        <Button variant="primary">Understood</Button>*/}
-            {/*    </Modal.Footer>*/}
-            {/*</Modal>*/}
+            <ScrollAnimation animateIn="fadeIn">
+                <h1 className="text-in-middle gold-text-selection" style={mainTextStyle}>
+                    Booking
+                    <br/>
+                    {props.match.params.id}
+                </h1>
+                <BookingDiv>
+                    <SearchButton onClick={() => searchForAvailableRoom(props.match.params.id,inDate,outDate)}>SEARCH</SearchButton>
+                    <CustomButton icon={faUser} title={"Guests"}/>
+                    <CustomButton icon={faCalendar} click={handleShowIn} title={"Check-in"} date={inDate}/>
+                    <CustomButton icon={faCalendar} click={handleShowOut} title={"Check-out"} date={outDate}/>
+                    <div>
+                        {resultRoom ? (
+                            <ReservedRoomCard room={resultRoom} />
+                        ):(
+                           <p>asd</p>
+                        )}
+                    </div>
+                </BookingDiv>
+            </ScrollAnimation>
         </div>
     );
 }
+
 
 const mainTextStyle = {
     marginTop: "2.5em",
