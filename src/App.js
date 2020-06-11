@@ -9,21 +9,32 @@ import Login from "./Components/Login";
 import Reservation from "./Components/Reservation";
 import AdminView from "./Components/AdminView";
 import AdminViewTable from "./Components/AdminViewTable";
+import Booking from "./Components/Booking";
+import CheckInModalProvider from "./Components/context/CheckInModal";
+import CheckOutModalProvider from "./Components/context/CheckOutModal";
+
 
 document.title = "Grand Hotel Codecool";
 
 const App = () => {
   return (
-    <React.Fragment>
-      <Router>
-        <Navbar />
-        <Route exact path="/" component={Home} />
-        <Route exact path="/rooms" component={Rooms} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/reservations" component={Reservation} />
-        <Route exact path="/admin" component={AdminViewTable} />
-      </Router>
-    </React.Fragment>
+
+      <CheckOutModalProvider>
+          <CheckInModalProvider>
+            <React.Fragment>
+              <Router>
+                <Navbar />
+                <Route exact path="/" component={Home} />
+                <Route exact path="/rooms" component={Rooms} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/reservations" component={Reservation} />
+                <Route path="/booking/:id" component={Booking} />
+                <Route exact path="/admin" component={AdminViewTable} />
+              </Router>
+            </React.Fragment>
+          </CheckInModalProvider>
+      </CheckOutModalProvider>
+
   );
 };
 
