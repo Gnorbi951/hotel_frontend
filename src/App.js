@@ -7,7 +7,6 @@ import Navbar from "./Components/Navbar";
 import Rooms from "./Components/Rooms";
 import Login from "./Components/Login";
 import Reservation from "./Components/Reservation";
-import AdminView from "./Components/AdminView";
 import AdminViewTable from "./Components/AdminViewTable";
 import Booking from "./Components/Booking";
 import CheckInModalProvider from "./Components/context/CheckInModal";
