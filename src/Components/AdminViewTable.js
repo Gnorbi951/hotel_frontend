@@ -11,21 +11,25 @@ const AdminViewTable = (props) => {
 
   const [resId, setResId] = useState(null);
   const [category, setCategory] = useState(null);
+  const [categoryId, setCategoryId] = useState(null);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [room, setRoom] = useState(null);
+  const [roomId, setRoomId] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/get-all-reserved-rooms").then((res) => {
-      setReservations(res.data);
-    });
+    axios
+      .get("http://localhost:8080/get-reserved-and-reservation-joined")
+      .then((res) => {
+        setReservations(res.data);
+      });
   }, []);
 
   return (
     <div>
-      <h1 className="text-in-mriddle gold-text-selection" style={mainTextStyle}>
+      <h1 className="text-in-middle gold-text-selection" style={mainTextStyle}>
         Reservations
       </h1>
+
       {reservations ? (
         <Table striped bordered hover size="sm">
           <thead>
@@ -42,20 +46,30 @@ const AdminViewTable = (props) => {
             {reservations.map((reservation) => (
               <tr key={reservation.id}>
                 <td>{reservation.id}</td>
-                <td>{reservation.reservation.category.name}</td>
-                <td>{reservation.reservation.startDate}</td>
-                <td>{reservation.reservation.endDate}</td>
-                <td>{reservation.room.id}</td>
+                <td>{reservation.category.name}</td>
+                <td>{reservation.startDate}</td>
+                <td>{reservation.endDate}</td>
+                {reservation.reservedRoom ? (
+                  <td>{reservation.reservedRoom.room.id}</td>
+                ) : (
+                  <td>not</td>
+                )}
+
                 <td>
                   <Button
                     variant="primary"
                     onClick={() => {
                       setModifyModalShow(true);
                       setResId(reservation.id);
-                      setCategory(reservation.reservation.category.name);
-                      setStartDate(reservation.reservation.startDate);
-                      setEndDate(reservation.reservation.endDate);
-                      setRoom(reservation.room.id);
+                      setCategory(reservation.category.name);
+                      setCategoryId(reservation.category.id);
+                      setStartDate(reservation.startDate);
+                      setEndDate(reservation.endDate);
+                      {
+                        reservation.reservedRoom
+                          ? setRoomId(reservation.reservedRoom.room.id)
+                          : setRoomId(null);
+                      }
                     }}
                   >
                     Modify
@@ -75,9 +89,10 @@ const AdminViewTable = (props) => {
           <EditReservationModal
             resId={resId}
             category={category}
+            categoryId={categoryId}
             startDate={startDate}
             endDate={endDate}
-            room={room}
+            roomId={roomId}
             show={modifyModalShow}
             onHide={() => setModifyModalShow(false)}
           />
