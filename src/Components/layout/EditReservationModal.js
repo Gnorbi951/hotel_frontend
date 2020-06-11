@@ -26,8 +26,6 @@ const EditReservationModal = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(event.target.room.value);
-    //alert(event.target.category.value);
-    //TODO:Need endpoint
     axios
       .post(
         `http://localhost:8080/finalise_reservation/${resId}/${event.target.room.value}/${event.target.startDate.value}/${event.target.endDate.value}`
@@ -109,7 +107,9 @@ const EditReservationModal = (props) => {
                     </Form.Control>
                   </Form.Group>
 
-                  <Button type="submit">Update</Button>
+                  <Button type="submit" onClick={props.onHide}>
+                    Update
+                  </Button>
                 </Form>
               </Col>
             </Row>
