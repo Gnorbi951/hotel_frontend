@@ -5,13 +5,20 @@ import axios from "axios";
 const EditReservationModal = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert(event.target.name.value);
-    //TODO:PUT
-    // axios.put("http://localhost:8080/room/allOccupiedRooms").then((res) => {
-    //     setReservations(res.data);
-    //   });
+    alert(event.target.category.value);
+    //TODO:Need endpoint
+    axios.put("https://example.com/", {
+      reservationId: { resId },
+      startDate: { resId },
+      endDate: { resId },
+      roomId: { resId },
+    });
   };
   const resId = props.resId;
+  const category = props.category;
+  const startDate = props.startDate;
+  const endDate = props.endDate;
+  const room = props.room;
 
   return (
     <Modal
@@ -48,7 +55,8 @@ const EditReservationModal = (props) => {
                     type="text"
                     name="category"
                     required
-                    defaultValue={props.category}
+                    disabled
+                    defaultValue={category}
                     placeholder="category"
                   ></Form.Control>
                 </Form.Group>
@@ -56,10 +64,10 @@ const EditReservationModal = (props) => {
                 <Form.Group controlId="startDate">
                   <Form.Label>startDate</Form.Label>
                   <Form.Control
-                    type="text"
+                    type="date"
                     name="startDate"
                     required
-                    defaultValue={props.startDate}
+                    defaultValue={startDate}
                     placeholder="category"
                   ></Form.Control>
                 </Form.Group>
@@ -67,10 +75,10 @@ const EditReservationModal = (props) => {
                 <Form.Group controlId="endDate">
                   <Form.Label>endDate</Form.Label>
                   <Form.Control
-                    type="text"
+                    type="date"
                     name="endDate"
                     required
-                    defaultValue={props.endDate}
+                    defaultValue={endDate}
                     placeholder="category"
                   ></Form.Control>
                 </Form.Group>
@@ -81,7 +89,7 @@ const EditReservationModal = (props) => {
                     type="text"
                     name="room"
                     required
-                    defaultValue={props.room}
+                    defaultValue={room}
                     placeholder="room"
                   ></Form.Control>
                 </Form.Group>

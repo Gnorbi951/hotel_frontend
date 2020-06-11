@@ -7,7 +7,6 @@ import EditReservationModal from "./layout/EditReservationModal";
 const AdminViewTable = (props) => {
   const [reservations, setReservations] = useState(null);
   const [addModalShow, setAddModalShow] = useState(false);
-  const [reservatedRooms, setReservatedRooms] = useState(null);
   const [modifyModalShow, setModifyModalShow] = useState(false);
 
   const [resId, setResId] = useState(null);
