@@ -1,28 +1,21 @@
 import React, {useEffect} from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 const RoomCategoryInfo = (props) => {
     let currentRoom = props.currentRoom;
 
-    let addListenters = () => {
-        let buttons = document.getElementsByClassName("reserve-btn");
-        for (let button of buttons) {
-            button.addEventListener("click", () =>
-                reserveCurrentRoom(button.dataset.id)
-            );
-        }
-    };
+  // let addListenters = () => {
+  //   let buttons = document.getElementsByClassName("reserve-btn");
+  //   for (let button of buttons) {
+  //     button.addEventListener("click", () =>
+  //       reserveCurrentRoom(button.dataset.id)
+  //     );
+  //   }
+  // };
 
-    const reserveCurrentRoom = (buttonId) => {
-        axios
-            .post(`http://localhost:8080/category/reserve/${currentRoom.id}`)
-            .then((res) => {
-                // TODO: check if reservation was successful.
-                alert(`You have booked a ${res.data.category.name}`);
-            });
-    };
+  // useEffect(addListenters, [currentRoom])
 
-    useEffect(addListenters, [currentRoom]);
 
     let roomText = `${currentRoom.name} has capacity for ${currentRoom.capacity} people on ${currentRoom.size} square meters. ${currentRoom.description}`;
     return (
@@ -41,26 +34,27 @@ const RoomCategoryInfo = (props) => {
                     className="
                 {/*text-center*/}
                  card-text gold-text-selection"
-                >
-                    <b className="gold-text-selection">
-                        {currentRoom.name.toUpperCase()}
-                    </b>
-                    <p/>
-                    {roomText}
-                </h1>
-                <br/>
-                <button
-                    type="button"
-                    key={currentRoom.id}
-                    className="btn btn-secondary card-text reserve-btn"
-                    data-id={currentRoom.id}
-                    style={buttonPlacementStyle}
-                >
-                    Reserve
-                </button>
-            </div>
-        </div>
-    );
+
+        >
+          <b className="gold-text-selection">
+            {currentRoom.name.toUpperCase()}
+          </b>
+          <p />
+          {roomText}
+        </h1>
+        <br />
+        <Link
+          to={`/booking/${currentRoom.id}`}
+          key={currentRoom.id}
+          className="btn btn-secondary card-text reserve-btn"
+          data-id={currentRoom.id}
+          style={buttonPlacementStyle}
+        >
+          Reserve
+        </Link>
+      </div>
+    </div>
+  );
 };
 
 export default RoomCategoryInfo;
