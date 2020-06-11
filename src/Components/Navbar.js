@@ -11,6 +11,7 @@ const Navbar = () => {
     setScrollY(window.pageYOffset);
   };
   window.addEventListener("scroll", getScrollY);
+
   return (
     <div
       style={{
