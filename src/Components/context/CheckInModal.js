@@ -2,8 +2,13 @@ import React, {useState} from "react";
 import {Button,Modal} from 'react-bootstrap';
 import Calendar from "react-calendar";
 import Moment from "moment";
+import styled from "styled-components";
 
 export const CheckInModalContext = React.createContext([[], () => {}])
+
+const CalendarDiv = styled.div`
+    margin-left: 3.5em;
+`
 
 const CheckInModalProvider = (props) => {
     const [show, setShow] = useState(false);
@@ -33,15 +38,16 @@ const CheckInModalProvider = (props) => {
                         <Modal.Title>Select the check-in date!</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Calendar
-                            onChange={onChange}
-                        />
+                        <CalendarDiv>
+                            <Calendar
+                                onChange={onChange}
+                            />
+                        </CalendarDiv>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
-                            Close
+                            Confirm
                         </Button>
-                        {/*<Button variant="primary">Understood</Button>*/}
                     </Modal.Footer>
                 </Modal>
             </>

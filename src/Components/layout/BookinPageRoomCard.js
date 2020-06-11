@@ -47,9 +47,9 @@ const BookingPageRoomCard = (props) => {
 export default BookingPageRoomCard;
 
 const cardStyle = {
-    width: "20rem",
-    minHeight: "10rem",
-    height: "10rem",
+    width: "30rem",
+    minHeight: "20rem",
+    height: "20rem",
     backgroundColor: "dimgrey",
     border: "1px solid darkgoldenrod",
     borderRadius: "3px",

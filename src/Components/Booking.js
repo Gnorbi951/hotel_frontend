@@ -10,22 +10,33 @@ import ScrollAnimation from "react-animate-on-scroll";
 import BookingPageRoomCard from "./layout/BookinPageRoomCard";
 import Moment from "moment";
 
+const PageImage = styled.img`
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: relative;
+`
+
 const OptionButton = styled.button`
     border: 0.2em solid #fcad26;
     color: #fcad26;
     background-color: white;
     margin-left: 0.2em;
     padding: 0.5em 2em;
+    margin-top: 1em;
     cursor: pointer;
     & div {
         float: left;
-        margin-top: 1em;
+        margin-top: 1.4em;
     }
     & b {
         text-align: center;
         font-weight: bold;
         font-size: 1.5em;
         float: right;
+        margin-top: 0.4em;
         margin-left: 1em;
     }
     & p {
@@ -34,14 +45,20 @@ const OptionButton = styled.button`
     }
 `
 const BookingDiv = styled.div`
-    margin-left: 10em;
-    margin-top: 2em;
+    position: absolute center;
+    margin-left: 5%;
+    & div.results p {
+        font-size: 2em;
+        margin-left: 30%;
+        margin-top: 1em;
+        color: #fcad26;
+    }   
 `
 
 const SearchButton = styled.div`
     font-size: 2rem;
     font-weight: 600;
-    margin-top: 0.3em;
+    margin-top: 1em;
     background: #2b2b2b;
     margin-right: 0.2em;
     color: #fff;
@@ -89,16 +106,17 @@ const Booking = (props) => {
 
     return (
         <div>
+            <PageImage
+                src={window.location.origin + "/pictures/bookingpicture.png"}
+                alt="cover_picture"
+            />
             <ScrollAnimation animateIn="fadeIn">
-                <h1 className="text-in-middle gold-text-selection" style={mainTextStyle}>
-                    Booking
-                </h1>
                 <BookingDiv>
                     <SearchButton onClick={() => searchForAvailableRoom(props.match.params.id,inDate,outDate)}>SEARCH</SearchButton>
                     <CustomButton icon={faUser} title={"Guests"}/>
                     <CustomButton icon={faCalendar} click={handleShowIn} title={"Check-in"} date={inDate}/>
                     <CustomButton icon={faCalendar} click={handleShowOut} title={"Check-out"} date={outDate}/>
-                    <div>
+                    <div className="results">
                         {resultRooms ? (
                             resultRooms.map((room, index) => (
                             <BookingPageRoomCard room={room} key={index} inDate={inDate} outDate={outDate}/>
@@ -111,14 +129,5 @@ const Booking = (props) => {
         </div>
     );
 }
-
-
-const mainTextStyle = {
-    marginTop: "2.5em",
-    textShadow: "0 0 18px rgba(0,0,0,0.4)",
-    fontFamily: "Alegreya Sans SC, Alata",
-}
-
-
 
 export default Booking;
