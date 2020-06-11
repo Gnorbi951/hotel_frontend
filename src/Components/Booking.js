@@ -55,10 +55,17 @@ const Booking = (props) => {
     const { handleShowIn,inDate } = useContext(CheckInModalContext);
     const { handleShowOut,outDate} = useContext(CheckOutModalContext);
     const [ resultRooms,setResultRooms] = useState(null);
+    const currentDate = Moment(Date.now()).format('YYYY-MM-DD');
 
     const searchForAvailableRoom = (id,inDate,outDate) => {
+        let start;
+        let end;
+
+        start = ((!inDate) ? currentDate : inDate);
+        end = ((!outDate) ? currentDate :outDate);
+
           axios
-            .get(`http://localhost:8080/category/get-available-categories-in-time-frame/${inDate}/${outDate}`)
+            .get(`http://localhost:8080/category/get-available-categories-in-time-frame/${start}/${end}`)
             .then((res) => {
                 setResultRooms(res.data)
             });
@@ -67,15 +74,7 @@ const Booking = (props) => {
     const CustomButton = ({click,icon,title,date}) => {
         let line;
 
-        if (!date) {
-            line = Moment(Date.now()).format('YYYY-MM-DD');
-        }else {
-            line = date;
-        }
-
-        if (title === "Guests"){
-            line = "4 Guests";
-        }
+        line = title === "Guests" ? "4 Guests": !date ? currentDate: date;
 
         return(
             <OptionButton onClick={click}>
