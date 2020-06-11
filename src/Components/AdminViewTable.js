@@ -22,7 +22,7 @@ const AdminViewTable = (props) => {
       .then((res) => {
         setReservations(res.data);
       });
-  }, []);
+  });
 
   return (
     <div>
