@@ -14,15 +14,6 @@ const RoomCategoryInfo = (props) => {
   //   }
   // };
 
-  // const reserveCurrentRoom = (buttonId) => {
-  //   axios
-  //     .post(`http://localhost:8080/category/reserve/${currentRoom.id}`)
-  //     .then((res) => {
-  //       // TODO: check if reservation was successful.
-  //       alert(`You have booked a ${res.data.category.name}`);
-  //     });
-  // };
-
   // useEffect(addListenters, [currentRoom]);
 
   let roomText = `${currentRoom.name} has capacity for ${currentRoom.capacity} people on ${currentRoom.size} square meters. ${currentRoom.description}`;
