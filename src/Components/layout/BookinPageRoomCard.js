@@ -10,19 +10,15 @@ const BookingPageRoomCard = (props) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    let [message, setMessage] = useState("");
     const successfulBookingMessage = `You have successfully booked a ${room.name}. Thank you!`;
     const failedBookingMessage = `We are sorry, but we cannot provide you with a ${room.name}. Choose another one or come back later.`;
-
-    function modalMessage(res) {
-        let modalBody = document.getElementById(`reservation-${room.id}-modal-body`);
-        modalBody.innerText = res.data ? successfulBookingMessage : failedBookingMessage;
-    }
 
     const reserveRoom = () => {
       axios
         .post(`http://localhost:8080/category/reserve/${room.id}/${props.inDate}/${props.outDate}`)
         .then((res) => {
-            modalMessage(res);
+            setMessage(res.data ? successfulBookingMessage : failedBookingMessage);
         });
       handleShow();
     };
@@ -35,7 +31,7 @@ const BookingPageRoomCard = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                 <div id={`reservation-${room.id}-modal-body`}>
-                    modal text here
+                    {message}
                 </div>
                 </Modal.Body>
                 <Modal.Footer>
