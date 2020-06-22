@@ -10,10 +10,12 @@ const BookingPageRoomCard = (props) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const successfulBookingMessage = `You have successfully booked a ${room.name}. Thank you!`;
+    const failedBookingMessage = `We are sorry, but we cannot provide you with a ${room.name}. Choose another one or come back later.`;
+
     function modalMessage(res) {
         let modalBody = document.getElementById(`reservation-${room.id}-modal-body`);
-        modalBody.innerText = res.data ? `You have successfully booked a ${room.name}. Thank you!`
-            : `We are sorry, but we cannot provide you with a ${room.name}. Choose another one or come back later.`;
+        modalBody.innerText = res.data ? successfulBookingMessage : failedBookingMessage;
     }
 
     const reserveRoom = () => {
