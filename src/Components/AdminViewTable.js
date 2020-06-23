@@ -74,6 +74,7 @@ const AdminViewTable = (props) => {
                   >
                     Modify
                   </Button>
+                  <Button>Delete</Button>
                 </td>
               </tr>
             ))}
