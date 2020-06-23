@@ -2,18 +2,19 @@ import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 
 const Registration = () => {
+    let form = {"userName": "", "password": ""}
 
     useEffect(() => {
 
-        const userName = document.querySelector(".user-name")
+        const userNameField = document.querySelector(".user-name")
+        const passwordField = document.querySelector(".password-field")
         const registrationButton = document.querySelector(".registration-trigger")
 
         registrationButton.addEventListener("click", function (event) {
             event.preventDefault();
-            console.log(userName.value);
+            form.userName = userNameField.value;
+            form.password = passwordField.value;
         })
-
-
 
     }, [])
 
@@ -52,7 +53,7 @@ const Registration = () => {
                                             type="text"
                                             name="password"
                                             id="password"
-                                            className="form-control password"
+                                            className="form-control password-field"
                                         />
                                     </div>
                                     <div className="form-group">
