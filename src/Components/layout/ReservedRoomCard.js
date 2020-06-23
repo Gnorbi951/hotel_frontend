@@ -30,7 +30,7 @@ const ReservedRoomCard = (props) => {
             className="half-page-image"
           />
           <div style={frontRoomNameStyle}>{room.name}</div>
-          <div style={frontDateStyle}>Date of Stay: [object Object] :) ;)</div>
+          {/*<div style={frontDateStyle}>Date of Stay: [object Object] :) ;)</div>*/}
         </h5>
       </div>
     </>
