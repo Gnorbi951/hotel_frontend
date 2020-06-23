@@ -2,7 +2,27 @@ import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 
 const Registration = () => {
-    let form = {"userName": "", "password": ""}
+    let form = {"username": "", "password": ""};
+
+    function sendRegistrationRequest(input) {
+        fetch('http://localhost:8080/auth/register-user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(input)
+        })
+            .then(response => response.json())
+            .then(response => {
+                if (response) {
+                    alert("Successful registration");
+                    window.location.href = '/';
+                } else {
+                    alert("registration not successful");
+                }
+
+            });
+    }
 
     useEffect(() => {
 
@@ -12,8 +32,9 @@ const Registration = () => {
 
         registrationButton.addEventListener("click", function (event) {
             event.preventDefault();
-            form.userName = userNameField.value;
+            form.username = userNameField.value;
             form.password = passwordField.value;
+            sendRegistrationRequest(form);
         })
 
     }, [])
