@@ -8,13 +8,11 @@ const DeleteReservationModal = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(`Deleted reservation on id: ${resId}`);
-    // axios
-    //   .post(
-    //     `http://localhost:8080/finalise_reservation/${resId}/${event.target.room.value}/${event.target.startDate.value}/${event.target.endDate.value}`
-    //   )
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   });
+    axios
+      .delete(`http://localhost:8080/reservation/delete/${resId}`)
+      .then((res) => {
+        console.log(res.data);
+      });
   };
 
   return (
