@@ -100,7 +100,8 @@ const EditReservationModal = (props) => {
 
                   <Form.Group controlId="room">
                     <Form.Label>room</Form.Label>
-                    <Form.Control as="select">
+                    <Form.Control as="select" defaultValue={roomId}>
+                      <option key={roomId}>{roomId}</option>
                       {availableRooms.map((room) => (
                         <option key={room.id}>{room.id}</option>
                       ))}
