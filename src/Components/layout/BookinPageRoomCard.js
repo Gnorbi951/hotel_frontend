@@ -1,20 +1,45 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import {Button, Col, Modal, Row} from "react-bootstrap";
 
 const BookingPageRoomCard = (props) => {
     console.log("entering bookingpageroomcard")
     const room = props.room;
 
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    let [message, setMessage] = useState("");
+    const successfulBookingMessage = `You have successfully booked a ${room.name}. Thank you!`;
+    const failedBookingMessage = `We are sorry, but we cannot provide you with a ${room.name}. Choose another one or come back later.`;
+
     const reserveRoom = () => {
       axios
         .post(`http://localhost:8080/category/reserve/${room.id}/${props.inDate}/${props.outDate}`)
         .then((res) => {
-          alert(`You have booked a ${room.name}`);
+            setMessage(res.data ? successfulBookingMessage : failedBookingMessage);
         });
+      handleShow();
     };
 
     let cardFront = (
         <>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Reservation for a {room.name}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                <div id={`reservation-${room.id}-modal-body`}>
+                    {message}
+                </div>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" className="btn btn-default" onClick={handleClose}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
             <div
                 id={`${room.id}-front`}
                 className="card mt-1 mb-3 clearfix overflow-hidden "
@@ -33,7 +58,10 @@ const BookingPageRoomCard = (props) => {
                         className="half-page-image"
                     />
                     <div style={roomNameStyle}>{room.name}</div>
-                    <button style={bookButtonStyle} onClick={reserveRoom}>BOOK NOW</button>
+                    <button style={bookButtonStyle}
+                            onClick={reserveRoom}
+
+                    >BOOK NOW</button>
                 </h5>
             </div>
         </>
