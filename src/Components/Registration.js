@@ -52,7 +52,7 @@ const Registration = () => {
                             <div id="registration-box" className="col-md-12">
                                 <form id="registration-form" className="form" action="" method="post">
                                     <h3 className="text-center text-info">Registration</h3>
-                                    <h5 id="server-response" style={{color: "red"}}>resp</h5>
+                                    <h5 id="server-response" style={{color: "red"}}> </h5>
                                     <div className="form-group">
                                         <label htmlFor="username" className="text-info">
                                             Username:
