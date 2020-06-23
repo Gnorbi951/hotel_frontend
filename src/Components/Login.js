@@ -19,11 +19,11 @@ const Login = () => {
               },
         })
         .then((response) => {
-          if (response.data.username !== "WRONG"){
+          if (response.data.status !== "WRONG"){
           logUserIn(response.data.token,response.data.username)
           }
           else {
-            alert("Wrong")
+            alert("Wrong username or password")
           }
         });
   }
