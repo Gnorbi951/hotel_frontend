@@ -1,10 +1,9 @@
 import React, {useEffect} from "react";
-import {Link} from "react-router-dom";
 
 const Registration = () => {
     let form = {"username": "", "password": ""};
 
-    function sendRegistrationRequest(input) {
+    function sendRegistrationRequest(input, responseField) {
         fetch('http://localhost:8080/auth/register-user', {
             method: 'POST',
             headers: {
@@ -14,11 +13,11 @@ const Registration = () => {
         })
             .then(response => response.json())
             .then(response => {
-                if (response) {
+                if (response.response === "Successful Registration") {
                     alert("Successful registration");
                     window.location.href = '/';
                 } else {
-                    alert("registration not successful");
+                    responseField.innerText = response.response;
                 }
 
             });
@@ -26,6 +25,7 @@ const Registration = () => {
 
     useEffect(() => {
 
+        let serverResponseField = document.getElementById("server-response");
         const userNameField = document.querySelector(".user-name")
         const passwordField = document.querySelector(".password-field")
         const registrationButton = document.querySelector(".registration-trigger")
@@ -34,7 +34,7 @@ const Registration = () => {
             event.preventDefault();
             form.username = userNameField.value;
             form.password = passwordField.value;
-            sendRegistrationRequest(form);
+            sendRegistrationRequest(form, serverResponseField);
         })
 
     }, [])
@@ -52,6 +52,7 @@ const Registration = () => {
                             <div id="registration-box" className="col-md-12">
                                 <form id="registration-form" className="form" action="" method="post">
                                     <h3 className="text-center text-info">Registration</h3>
+                                    <h5 id="server-response" style={{color: "red"}}>resp</h5>
                                     <div className="form-group">
                                         <label htmlFor="username" className="text-info">
                                             Username:
@@ -71,7 +72,7 @@ const Registration = () => {
                                         </label>
                                         <br />
                                         <input
-                                            type="text"
+                                            type="password"
                                             name="password"
                                             id="password"
                                             className="form-control password-field"
