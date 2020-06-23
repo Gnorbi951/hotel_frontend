@@ -14,7 +14,7 @@ const Registration = () => {
             .then(response => response.json())
             .then(response => {
                 if (response.response === "Successful Registration") {
-                    alert("Successful registration");
+                    alert("Successful registration"); // TODO: Modal here instead of alert
                     window.location.href = '/';
                 } else {
                     responseField.innerText = response.response;
