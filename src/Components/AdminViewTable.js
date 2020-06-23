@@ -3,11 +3,13 @@ import { Table, Button, ButtonToolbar } from "react-bootstrap";
 import axios from "axios";
 import AddNewReservationModal from "./layout/AddNewReservationModal";
 import EditReservationModal from "./layout/EditReservationModal";
+import DeleteReservationModal from "./layout/DeleteReservationModal";
 
 const AdminViewTable = (props) => {
   const [reservations, setReservations] = useState(null);
   const [addModalShow, setAddModalShow] = useState(false);
   const [modifyModalShow, setModifyModalShow] = useState(false);
+  const [deleteModalShow, setDeleteModalShow] = useState(false);
 
   const [resId, setResId] = useState(null);
   const [category, setCategory] = useState(null);
@@ -52,7 +54,7 @@ const AdminViewTable = (props) => {
                 {reservation.reservedRoom ? (
                   <td>{reservation.reservedRoom.room.id}</td>
                 ) : (
-                  <td>not</td>
+                  <td>Doesn't specified yet</td>
                 )}
 
                 <td>
@@ -74,7 +76,14 @@ const AdminViewTable = (props) => {
                   >
                     Modify
                   </Button>
-                  <Button>Delete</Button>
+                  <Button
+                    onClick={() => {
+                      setDeleteModalShow(true);
+                      setResId(reservation.id);
+                    }}
+                  >
+                    Delete
+                  </Button>
                 </td>
               </tr>
             ))}
@@ -86,6 +95,11 @@ const AdminViewTable = (props) => {
           <AddNewReservationModal
             show={addModalShow}
             onHide={() => setAddModalShow(false)}
+          />
+          <DeleteReservationModal
+            resId={resId}
+            show={deleteModalShow}
+            onHide={() => setDeleteModalShow(false)}
           />
           <EditReservationModal
             resId={resId}
