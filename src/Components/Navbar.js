@@ -25,6 +25,7 @@ const Navbar = () => {
           <MyLink to={"/"}>Home</MyLink>
           {/*<MyLink to={"/rooms"}>Rooms</MyLink>*/}
           <MyLink to={"/reservations"}>Reservations</MyLink>
+          <Username>{localStorage.getItem("username")}</Username>
           <LoginIcon to={"/login"}>
             <FontAwesomeIcon icon={faSignInAlt} />
           </LoginIcon>
@@ -34,6 +35,7 @@ const Navbar = () => {
           <MyLink to={"/"}>Home</MyLink>
           {/*<MyLink to={"/rooms"}>Rooms</MyLink>*/}
           <MyLink to={"/reservations"}>Reservations</MyLink>
+          <Username>{localStorage.getItem("username")}</Username>
           <LoginIcon to={"/login"}>
             <FontAwesomeIcon icon={faSignInAlt} />
           </LoginIcon>
@@ -67,6 +69,20 @@ const NavBarHeaderOpacity = styled.header`
   transition: opacity 4s linear;
 `;
 
+const Username = styled.div`
+   margin: 0.2rem 1rem;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-left:auto;
+  &:hover {
+    transition: 350ms;
+    color: #a9a9a9;
+    text-decoration: none;
+  }
+  font-size: 1.5rem;
+`
 const LoginIcon = styled(Link)`
   font-size: 1.8rem;
   color: #ffffff;
