@@ -78,14 +78,14 @@ const AdminViewTable = (props) => {
               </tr>
             ))}
           </tbody>
-          {/* <Button variant="primary" onClick={() => setAddModalShow(true)}>
+          <Button variant="primary" onClick={() => setAddModalShow(true)}>
             New reservation
           </Button>
 
           <AddNewReservationModal
             show={addModalShow}
             onHide={() => setAddModalShow(false)}
-          /> */}
+          />
           <EditReservationModal
             resId={resId}
             category={category}
