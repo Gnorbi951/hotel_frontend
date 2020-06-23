@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const logIn = (event) => {
@@ -60,7 +61,9 @@ const Login = () => {
                     <input type="password" name="password" id="password" className="form-control"/>
                   </div>
                   <div id="register-link" className="text-right">
-                    <a href="/register" className="text-info">Register here</a>
+                    <Link to="/registration" className="text-info">
+                      Register here
+                    </Link>
                   </div>
                 </form>
                 <button className="btn btn-info btn-md" onClick={logIn} >Login</button>

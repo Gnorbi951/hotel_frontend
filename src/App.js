@@ -11,6 +11,7 @@ import AdminViewTable from "./Components/AdminViewTable";
 import Booking from "./Components/Booking";
 import CheckInModalProvider from "./Components/context/CheckInModal";
 import CheckOutModalProvider from "./Components/context/CheckOutModal";
+import Registration from "./Components/Registration";
 
 
 document.title = "Grand Hotel Codecool";
@@ -29,6 +30,7 @@ const App = () => {
                 <Route exact path="/reservations" component={Reservation} />
                 <Route path="/booking/:id" component={Booking} />
                 <Route exact path="/admin" component={AdminViewTable} />
+                <Route exact path="/registration" component={Registration} />
               </Router>
             </React.Fragment>
           </CheckInModalProvider>
