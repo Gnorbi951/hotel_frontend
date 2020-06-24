@@ -18,13 +18,17 @@ const AdminViewTable = (props) => {
   const [endDate, setEndDate] = useState(null);
   const [roomId, setRoomId] = useState(null);
 
+  const config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+  };
+
   useEffect(() => {
     axios
-      .get("http://localhost:8080/get-reserved-and-reservation-joined")
+      .get("http://localhost:8080/get-reserved-and-reservation-joined", config)
       .then((res) => {
         setReservations(res.data);
       });
-  });
+  }, []);
 
   return (
     <div>

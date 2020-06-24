@@ -12,10 +12,20 @@ const EditReservationModal = (props) => {
 
   const [availableRooms, setAvailableRooms] = useState(null);
 
+  const config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+  };
+
+  const postConfig = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  };
+
   useEffect(() => {
     axios
       .get(
-        `http://localhost:8080/room/all-available-category/${startDate}/${endDate}/${categoryId}`
+        `http://localhost:8080/room/all-available-category/${startDate}/${endDate}/${categoryId}`,
+        config
       )
       .then((res) => {
         setAvailableRooms(res.data);
@@ -24,11 +34,13 @@ const EditReservationModal = (props) => {
   }, [resId]);
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    //event.preventDefault();
     console.log(event.target.room.value);
     axios
       .post(
-        `http://localhost:8080/finalise_reservation/${resId}/${event.target.room.value}/${event.target.startDate.value}/${event.target.endDate.value}`
+        `http://localhost:8080/finalise_reservation/${resId}/${event.target.room.value}/${event.target.startDate.value}/${event.target.endDate.value}`,
+        "hello",
+        { headers: postConfig }
       )
       .then((res) => {
         console.log(res.data);

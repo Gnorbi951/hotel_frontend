@@ -4,9 +4,17 @@ import axios from "axios";
 
 function AddReservationModal(props) {
   const [categories, setCategories] = useState(null);
+  const config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+  };
+
+  const postConfig = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  };
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/category/all`).then((res) => {
+    axios.get(`http://localhost:8080/category/all`, config).then((res) => {
       setCategories(res.data);
       console.log(res.data);
     });
@@ -14,12 +22,15 @@ function AddReservationModal(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("Token:" + config);
     axios
       .post(
-        `http://localhost:8080/category/reserve/${event.target.category.value}/${event.target.startDate.value}/${event.target.endDate.value}`
+        `http://localhost:8080/category/reserve/${event.target.category.value}/${event.target.startDate.value}/${event.target.endDate.value}`,
+        "hello",
+        { headers: postConfig }
       )
       .then((res) => {
-        console.log(res.data);
+        console.log("Token:" + config);
       });
   };
 

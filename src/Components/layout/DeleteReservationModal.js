@@ -4,12 +4,15 @@ import axios from "axios";
 
 const DeleteReservationModal = (props) => {
   const resId = props.resId;
+  const config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(`Deleted reservation on id: ${resId}`);
     axios
-      .delete(`http://localhost:8080/reservation/delete/${resId}`)
+      .delete(`http://localhost:8080/reservation/delete/${resId}`, config)
       .then((res) => {
         console.log(res.data);
       });
