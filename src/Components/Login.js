@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link ,Redirect} from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -12,11 +12,11 @@ const Login = () => {
             {username,password},
             {withCredentials: true})
         .then((response) => {
-          if (response.data === "WRONG"){
+          if (response.data.status === "WRONG"){
             alert("Wrong username or password")
           }else {
             alert("You Logged in")
-            logUserIn(response.data)
+            logUserIn(response.data.username)
           }
         });
   }
@@ -24,10 +24,12 @@ const Login = () => {
 
   const logUserIn = (username) => {
     localStorage.setItem("username",username);
+    return <Redirect to={"/"} />
   };
 
   const logOut = () => {
     localStorage.clear();
+    return <Redirect to={"/login"} />
   }
 
   return (
