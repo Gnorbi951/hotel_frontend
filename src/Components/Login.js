@@ -9,7 +9,8 @@ const Login = () => {
   const logIn = (event) => {
     axios
         .post('http://localhost:8080/auth/signin',
-            {username,password})
+            {username,password},
+            {withCredentials: true})
         .then((response) => {
           if (response.data === "WRONG"){
             alert("Wrong username or password")
