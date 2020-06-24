@@ -1,43 +1,35 @@
-import React from "react";
+import React, {useState} from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link ,Redirect} from "react-router-dom";
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   const logIn = (event) => {
-    event.stopPropagation()
-    const name = document.getElementById("username");
-    const password = document.getElementById("password");
-
-    const usernameData = name.value;
-    const passwordData = password.value;
-    const serverRequest = {"username": usernameData, "password": passwordData}
-
     axios
-        .post('http://localhost:8080/auth/signin', serverRequest,{
-              headers: {
-                'Content-Type': 'application/json'
-              },
-        })
+        .post('http://localhost:8080/auth/signin',
+            {username,password},
+            {withCredentials: true})
         .then((response) => {
-          if (response.data.status !== "WRONG"){
-          logUserIn(response.data.token,response.data.username)
-          }
-          else {
+          if (response.data.status === "WRONG"){
             alert("Wrong username or password")
+          }else {
+            alert("You Logged in")
+            logUserIn(response.data.username)
           }
         });
   }
 
 
-  const logUserIn = (token,username) => {
-    localStorage.setItem("token", token);
+  const logUserIn = (username) => {
     localStorage.setItem("username",username);
-    window.location.href = '/';
+    return <Redirect to={"/"} />
   };
 
   const logOut = () => {
     localStorage.clear();
-    window.location.href = '/login';
+    return <Redirect to={"/login"} />
   }
 
   return (
@@ -53,12 +45,14 @@ const Login = () => {
                   <div className="form-group">
                     <label htmlFor="username" className="text-info">Username:</label>
                     <br />
-                    <input autoComplete="off" type="text" name="username" id="username" className="form-control"/>
+                    <input autoComplete="off" type="text" name="username" id="username" className="form-control"
+                           value = {username} onChange = {e => setUsername(e.target.value)}/>
                   </div>
                   <div className="form-group">
                     <label htmlFor="password" className="text-info">Password:</label>
                     <br />
-                    <input type="password" name="password" id="password" className="form-control"/>
+                    <input type="password" name="password" id="password" className="form-control"
+                           value = {password} onChange = {e => setPassword(e.target.value)}/>
                   </div>
                   <div id="register-link" className="text-right">
                     <Link to="/registration" className="text-info">
@@ -67,7 +61,9 @@ const Login = () => {
                   </div>
                 </form>
                 <button className="btn btn-info btn-md" onClick={logIn} >Login</button>
-                <button className="btn btn-info btn-md" onClick={logOut} >Logout</button>
+                {localStorage.getItem("username")?(
+                <button className="btn btn-info btn-md" onClick={logOut}>Logout</button>
+                ):(<div/>)}
               </div>
             </div>
           </div>
