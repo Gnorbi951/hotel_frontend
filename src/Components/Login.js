@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   const logIn = (event) => {
-    event.stopPropagation()
     const name = document.getElementById("username");
     const password = document.getElementById("password");
 
@@ -40,6 +39,8 @@ const Login = () => {
     window.location.href = '/login';
   }
 
+  const isLoggedIn = localStorage.getItem("status") === "DONE";
+
   return (
     <React.Fragment>
       <div id="login">
@@ -67,7 +68,9 @@ const Login = () => {
                   </div>
                 </form>
                 <button className="btn btn-info btn-md" onClick={logIn} >Login</button>
-                <button className="btn btn-info btn-md" onClick={logOut} >Logout</button>
+                {localStorage.getItem("username")?(
+                <button className="btn btn-info btn-md" onClick={logOut}>Logout</button>
+                ):(<div/>)}
               </div>
             </div>
           </div>
