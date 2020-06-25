@@ -7,7 +7,7 @@ const Reservation = (props) => {
   const [rooms, setRooms] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/get-all-reservations").then((res) => {
+    axios.get("http://localhost:8080/get-my-reservations").then((res) => {
       setRooms(res.data);
     });
   }, []);
