@@ -7,11 +7,11 @@ import DeleteReservationModal from "./layout/DeleteReservationModal";
 
 const AdminViewTable = (props) => {
   const [reservations, setReservations] = useState(null);
-  const [users, setUsers] = useState(null);
   const [addModalShow, setAddModalShow] = useState(false);
   const [modifyModalShow, setModifyModalShow] = useState(false);
   const [deleteModalShow, setDeleteModalShow] = useState(false);
 
+  const [userId, setUserId] = useState(null);
   const [resId, setResId] = useState(null);
   const [category, setCategory] = useState(null);
   const [categoryId, setCategoryId] = useState(null);
@@ -29,27 +29,21 @@ const AdminViewTable = (props) => {
       .then((res) => {
         setReservations(res.data);
       });
-    axios
-      .get("http://localhost:8080/get-all-user-with-reservation")
-      .then((res) => {
-        setUsers(res.data);
-      });
   }, []);
 
   console.log(reservations);
-  console.log(users);
 
   return (
     <div>
       <h1 className="text-in-middle gold-text-selection" style={mainTextStyle}>
         Reservations
       </h1>
-      {reservations && users ? (
+      {reservations ? (
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
-              <th>Username</th>
-              <th>Id</th>
+              <th>UserId</th>
+              <th>ReservationId</th>
               <th>Category</th>
               <th>StartDate</th>
               <th>EndDate</th>
@@ -60,6 +54,7 @@ const AdminViewTable = (props) => {
           <tbody>
             {reservations.map((reservation) => (
               <tr key={reservation.id}>
+                <td>{reservation.user.id}</td>
                 <td>{reservation.id}</td>
                 <td>{reservation.category.name}</td>
                 <td>{reservation.startDate}</td>
@@ -75,6 +70,7 @@ const AdminViewTable = (props) => {
                     variant="primary"
                     onClick={() => {
                       setModifyModalShow(true);
+                      setUserId(reservation.user.id);
                       setResId(reservation.id);
                       setCategory(reservation.category.name);
                       setCategoryId(reservation.category.id);
@@ -115,6 +111,7 @@ const AdminViewTable = (props) => {
             onHide={() => setDeleteModalShow(false)}
           />
           <EditReservationModal
+            userId={userId}
             resId={resId}
             category={category}
             categoryId={categoryId}
