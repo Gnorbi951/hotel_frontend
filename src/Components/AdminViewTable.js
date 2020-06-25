@@ -7,6 +7,7 @@ import DeleteReservationModal from "./layout/DeleteReservationModal";
 
 const AdminViewTable = (props) => {
   const [reservations, setReservations] = useState(null);
+  const [users, setUsers] = useState(null);
   const [addModalShow, setAddModalShow] = useState(false);
   const [modifyModalShow, setModifyModalShow] = useState(false);
   const [deleteModalShow, setDeleteModalShow] = useState(false);
@@ -28,18 +29,26 @@ const AdminViewTable = (props) => {
       .then((res) => {
         setReservations(res.data);
       });
+    axios
+      .get("http://localhost:8080/get-all-user-with-reservation")
+      .then((res) => {
+        setUsers(res.data);
+      });
   }, []);
+
+  console.log(reservations);
+  console.log(users);
 
   return (
     <div>
       <h1 className="text-in-middle gold-text-selection" style={mainTextStyle}>
         Reservations
       </h1>
-
-      {reservations ? (
+      {reservations && users ? (
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
+              <th>Username</th>
               <th>Id</th>
               <th>Category</th>
               <th>StartDate</th>
