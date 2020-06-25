@@ -81,6 +81,9 @@ const Booking = (props) => {
         start = ((!inDate) ? currentDate : inDate);
         end = ((!outDate) ? currentDate :outDate);
 
+        console.log(start)
+        console.log(end)
+
           axios
             .get(`http://localhost:8080/category/get-available-categories-in-time-frame/${start}/${end}`)
             .then((res) => {

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import {Button, Col, Modal, Row} from "react-bootstrap";
+import {Link} from "react-router-dom";
+import styled from "styled-components";
 
 const BookingPageRoomCard = (props) => {
     const room = props.room;
@@ -40,9 +42,21 @@ const BookingPageRoomCard = (props) => {
                     <Modal.Title>Reservation for a {room.name}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
+                    {localStorage.getItem("username") ? (
                 <div id={`reservation-${room.id}-modal-body`}>
                     {message}
                 </div>
+                    ):(
+                        <LogInStyle>
+                            <h3 className="text-in-middle gold-text-selection">
+                                You are not logged in.
+                                Please log in!
+                            </h3>
+                            <div>
+                                <Link to={"/login"} className="btn btn-secondary card-text reserve-btn">Log In!</Link>
+                            </div>
+                        </LogInStyle>
+                    )}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" className="btn btn-default" onClick={handleClose}>
@@ -112,6 +126,15 @@ const roomNameStyle = {
     fontSize: "2.5em",
     textAlign: "center",
 };
+
+const LogInStyle = styled.div`
+    position: center;
+    margin-top: 5%;
+    & div {
+        margin-top: 1em;
+        margin-left: 43%;
+    }
+`
 
 const bookButtonStyle = {
     position: "absolute",
