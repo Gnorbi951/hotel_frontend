@@ -12,30 +12,35 @@ import Booking from "./Components/Booking";
 import CheckInModalProvider from "./Components/context/CheckInModal";
 import CheckOutModalProvider from "./Components/context/CheckOutModal";
 import Registration from "./Components/Registration";
-
+import axios from "axios";
 
 document.title = "Grand Hotel Codecool";
 
 const App = () => {
+  axios.interceptors.request.use(function (config) {
+    const token = localStorage.getItem("token");
+    config.headers.Authorization = `Bearer ${token}`;
+
+    return config;
+  });
+
   return (
-
-      <CheckOutModalProvider>
-          <CheckInModalProvider>
-            <React.Fragment>
-              <Router>
-                <Navbar />
-                <Route exact path="/" component={Home} />
-                <Route exact path="/rooms" component={Rooms} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/reservations" component={Reservation} />
-                <Route path="/booking/:id" component={Booking} />
-                <Route exact path="/admin" component={AdminViewTable} />
-                <Route exact path="/registration" component={Registration} />
-              </Router>
-            </React.Fragment>
-          </CheckInModalProvider>
-      </CheckOutModalProvider>
-
+    <CheckOutModalProvider>
+      <CheckInModalProvider>
+        <React.Fragment>
+          <Router>
+            <Navbar />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/rooms" component={Rooms} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/reservations" component={Reservation} />
+            <Route path="/booking/:id" component={Booking} />
+            <Route exact path="/admin" component={AdminViewTable} />
+            <Route exact path="/registration" component={Registration} />
+          </Router>
+        </React.Fragment>
+      </CheckInModalProvider>
+    </CheckOutModalProvider>
   );
 };
 
