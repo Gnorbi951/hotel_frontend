@@ -9,8 +9,6 @@ const RoomTabs = (props) => {
   useEffect(() => {
     axios.get("http://localhost:8080/category/all").then((res) => {
       setRooms(res.data);
-      console.log(res.data);
-      // console.log(rooms);
       setCurrentRoom(res.data[0]);
     });
   }, []);
