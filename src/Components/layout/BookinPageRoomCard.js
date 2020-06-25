@@ -3,7 +3,6 @@ import axios from 'axios';
 import {Button, Col, Modal, Row} from "react-bootstrap";
 
 const BookingPageRoomCard = (props) => {
-    console.log("entering bookingpageroomcard")
     const room = props.room;
 
     const [show, setShow] = useState(false);
