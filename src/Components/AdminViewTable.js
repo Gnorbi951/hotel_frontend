@@ -3,11 +3,13 @@ import { Table, Button, ButtonToolbar } from "react-bootstrap";
 import axios from "axios";
 import AddNewReservationModal from "./layout/AddNewReservationModal";
 import EditReservationModal from "./layout/EditReservationModal";
+import DeleteReservationModal from "./layout/DeleteReservationModal";
 
 const AdminViewTable = (props) => {
   const [reservations, setReservations] = useState(null);
   const [addModalShow, setAddModalShow] = useState(false);
   const [modifyModalShow, setModifyModalShow] = useState(false);
+  const [deleteModalShow, setDeleteModalShow] = useState(false);
 
   const [resId, setResId] = useState(null);
   const [category, setCategory] = useState(null);
@@ -16,13 +18,17 @@ const AdminViewTable = (props) => {
   const [endDate, setEndDate] = useState(null);
   const [roomId, setRoomId] = useState(null);
 
+  const config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+  };
+
   useEffect(() => {
     axios
-      .get("http://localhost:8080/get-reserved-and-reservation-joined")
+      .get("http://localhost:8080/get-reserved-and-reservation-joined", config)
       .then((res) => {
         setReservations(res.data);
       });
-  });
+  }, []);
 
   return (
     <div>
@@ -52,7 +58,7 @@ const AdminViewTable = (props) => {
                 {reservation.reservedRoom ? (
                   <td>{reservation.reservedRoom.room.id}</td>
                 ) : (
-                  <td>not</td>
+                  <td>Doesn't specified yet</td>
                 )}
 
                 <td>
@@ -74,18 +80,31 @@ const AdminViewTable = (props) => {
                   >
                     Modify
                   </Button>
+                  <Button
+                    onClick={() => {
+                      setDeleteModalShow(true);
+                      setResId(reservation.id);
+                    }}
+                  >
+                    Delete
+                  </Button>
                 </td>
               </tr>
             ))}
           </tbody>
-          {/* <Button variant="primary" onClick={() => setAddModalShow(true)}>
+          <Button variant="primary" onClick={() => setAddModalShow(true)}>
             New reservation
           </Button>
 
           <AddNewReservationModal
             show={addModalShow}
             onHide={() => setAddModalShow(false)}
-          /> */}
+          />
+          <DeleteReservationModal
+            resId={resId}
+            show={deleteModalShow}
+            onHide={() => setDeleteModalShow(false)}
+          />
           <EditReservationModal
             resId={resId}
             category={category}
