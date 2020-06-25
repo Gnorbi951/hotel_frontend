@@ -18,7 +18,7 @@ const Login = () => {
         })
         .then((response) => {
           if (response.data.status !== "WRONG"){
-            logUserIn(response.data.token,response.data.username)
+            logUserIn(response.data.token,response.data.username,response.data.roles)
           }
           else {
             alert("Wrong username or password")
@@ -26,8 +26,9 @@ const Login = () => {
         });
   }
 
-  const logUserIn = (token,username) => {
+  const logUserIn = (token,username,roles) => {
     localStorage.setItem("token",token)
+    localStorage.setItem("roles",roles)
     localStorage.setItem("username",username);
     window.location.href = '/';
   };

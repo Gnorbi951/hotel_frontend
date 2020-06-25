@@ -16,7 +16,10 @@ const BookingPageRoomCard = (props) => {
 
     let [message, setMessage] = useState("");
     const successfulBookingMessage = `You have successfully booked a ${room.name}. Thank you!`;
-    const failedBookingMessage = `We are sorry, but we cannot provide you with a ${room.name}. Choose another one or come back later.`;
+    const failedBookingMessage = `We are sorry, but we cannot provide you with a 
+                                ${room.name} from ${props.inDate} until ${props.outDate}. 
+                                You can choose another category, modify the dates of your stay or
+                                 check back later to see if it has become available.`;
 
     const reserveRoom = () => {
       axios
