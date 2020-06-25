@@ -24,7 +24,8 @@ const Navbar = () => {
         <NavBarHeaderOpacity>
           <MyLink to={"/"}>Home</MyLink>
           {/*<MyLink to={"/rooms"}>Rooms</MyLink>*/}
-          <MyLink to={"/reservations"}>Reservations</MyLink>
+          <MyLink to={"/reservations"}>My Reservations</MyLink>
+            <MyLink to={"/registration"}>Register</MyLink>
           <Username>{localStorage.getItem("username")}</Username>
           <LoginIcon to={"/login"}>
             <FontAwesomeIcon icon={faSignInAlt} />
@@ -34,7 +35,7 @@ const Navbar = () => {
         <NavBarHeader>
           <MyLink to={"/"}>Home</MyLink>
           {/*<MyLink to={"/rooms"}>Rooms</MyLink>*/}
-          <MyLink to={"/reservations"}>Reservations</MyLink>
+          <MyLink to={"/reservations"}>My Reservations</MyLink>
             <MyLink to={"/registration"}>Register</MyLink>
           <Username>{localStorage.getItem("username")}</Username>
           <LoginIcon to={"/login"}>
