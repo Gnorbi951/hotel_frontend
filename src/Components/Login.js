@@ -6,30 +6,35 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const serverRequest = {"username": username, "password": password}
+
   const logIn = (event) => {
+    event.stopPropagation()
     axios
-        .post('http://localhost:8080/auth/signin',
-            {username,password},
-            {withCredentials: true})
+        .post('http://localhost:8080/auth/signin', serverRequest,{
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        })
         .then((response) => {
-          if (response.data.status === "WRONG"){
+          if (response.data.status !== "WRONG"){
+            logUserIn(response.data.token,response.data.username)
+          }
+          else {
             alert("Wrong username or password")
-          }else {
-            alert("You Logged in")
-            logUserIn(response.data.username)
           }
         });
   }
 
-
-  const logUserIn = (username) => {
+  const logUserIn = (token,username) => {
+    localStorage.setItem("token",token)
     localStorage.setItem("username",username);
-    return <Redirect to={"/"} />
+    window.location.href = '/';
   };
 
   const logOut = () => {
     localStorage.clear();
-    return <Redirect to={"/login"} />
+    window.location.href = '/login';
   }
 
   return (
