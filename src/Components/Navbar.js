@@ -12,6 +12,10 @@ const Navbar = () => {
   };
   window.addEventListener("scroll", getScrollY);
 
+  const checkIfAdmin = () => {
+      return !!(localStorage.getItem("roles") && localStorage.getItem("roles").includes("ADMIN"));
+  }
+
   return (
     <div
       style={{
@@ -26,7 +30,11 @@ const Navbar = () => {
           {/*<MyLink to={"/rooms"}>Rooms</MyLink>*/}
           <MyLink to={"/reservations"}>My Reservations</MyLink>
             <MyLink to={"/registration"}>Register</MyLink>
-          <Username>{localStorage.getItem("username")}</Username>
+            {checkIfAdmin() ?(
+                <AdminName to={"/admin"}>{localStorage.getItem("username")}</AdminName>
+            ):(
+                <Username>{localStorage.getItem("username")}</Username>
+            )}
           <LoginIcon to={"/login"}>
             <FontAwesomeIcon icon={faSignInAlt} />
           </LoginIcon>
@@ -37,7 +45,11 @@ const Navbar = () => {
           {/*<MyLink to={"/rooms"}>Rooms</MyLink>*/}
           <MyLink to={"/reservations"}>My Reservations</MyLink>
             <MyLink to={"/registration"}>Register</MyLink>
-          <Username>{localStorage.getItem("username")}</Username>
+            {checkIfAdmin() ?(
+                <AdminName to={"/admin"}>{localStorage.getItem("username")}</AdminName>
+            ):(
+                <Username>{localStorage.getItem("username")}</Username>
+            )}
           <LoginIcon to={"/login"}>
             <FontAwesomeIcon icon={faSignInAlt} />
           </LoginIcon>
@@ -73,6 +85,20 @@ const NavBarHeaderOpacity = styled.header`
 
 const Username = styled.div`
    margin: 0.2rem 1rem;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  &:hover {
+    transition: 350ms;
+    color: #a9a9a9;
+    text-decoration: none;
+  }
+  font-size: 1.5rem;
+`
+
+const AdminName = styled(Link)`
+     margin: 0.2rem 1rem;
   color: #ffffff;
   text-decoration: none;
   text-transform: uppercase;
