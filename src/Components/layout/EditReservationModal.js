@@ -4,6 +4,7 @@ import axios from "axios";
 
 const EditReservationModal = (props) => {
   const resId = props.resId;
+  const userId = props.userId;
   const category = props.category;
   const categoryId = props.categoryId;
   const startDate = props.startDate;
@@ -65,8 +66,19 @@ const EditReservationModal = (props) => {
             <Row>
               <Col sm={6}>
                 <Form onSubmit={handleSubmit}>
+                  <Form.Group controlId="userId">
+                    <Form.Label>userId</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="userId"
+                      required
+                      disabled
+                      placeholder={userId}
+                    ></Form.Control>
+                  </Form.Group>
+
                   <Form.Group controlId="resId">
-                    <Form.Label>id</Form.Label>
+                    <Form.Label>reservationId</Form.Label>
                     <Form.Control
                       type="text"
                       name="resId"
