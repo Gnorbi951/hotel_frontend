@@ -6,6 +6,11 @@ const BookingPageRoomCard = (props) => {
     console.log("entering bookingpageroomcard")
     const room = props.room;
 
+    const postConfig = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+    };
+
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -16,7 +21,10 @@ const BookingPageRoomCard = (props) => {
 
     const reserveRoom = () => {
       axios
-        .post(`http://localhost:8080/category/reserve/${room.id}/${props.inDate}/${props.outDate}`)
+        .post(`http://localhost:8080/category/reserve/${room.id}/${props.inDate}/${props.outDate}`,
+            "hello",
+            { headers: postConfig }
+        )
         .then((res) => {
             setMessage(res.data ? successfulBookingMessage : failedBookingMessage);
         });
