@@ -75,7 +75,6 @@ const Username = styled.div`
   text-decoration: none;
   text-transform: uppercase;
   font-weight: bold;
-  margin-left:auto;
   &:hover {
     transition: 350ms;
     color: #a9a9a9;
