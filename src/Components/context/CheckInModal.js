@@ -12,7 +12,7 @@ const CalendarDiv = styled.div`
 
 const CheckInModalProvider = (props) => {
     const [show, setShow] = useState(false);
-    const [inDate,setInDate] = useState(false);
+    const [inDate,setInDate] = useState(Moment(Date.now()).format('YYYY-MM-DD'));
 
     const onChange = date => {
         let formattedDate = Moment(date).format('YYYY-MM-DD');

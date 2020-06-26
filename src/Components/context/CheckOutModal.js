@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Button,Modal} from 'react-bootstrap';
 import Calendar from "react-calendar";
-import Moment from 'moment';
+import moment from 'moment';
 import styled from "styled-components";
 
 
@@ -11,11 +11,12 @@ const CalendarDiv = styled.div`
     margin-left: 3.5em;
 `
 const CheckOutModalProvider = (props) => {
+    const currentDate = moment().add(1, 'days');
     const [show, setShow] = useState(false);
-    const [outDate,setOutDate] = useState(false);
+    const [outDate,setOutDate] = useState(moment(currentDate).format('YYYY-MM-DD'));
 
     const onChange = date => {
-        let formattedDate = Moment(date).format('YYYY-MM-DD');
+        let formattedDate = moment(date).format('YYYY-MM-DD');
         setOutDate(formattedDate);
     }
     const handleClose = () => setShow(false);
