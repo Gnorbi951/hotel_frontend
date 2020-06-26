@@ -24,6 +24,7 @@ const BookingPageRoomCard = (props) => {
                                  check back later to see if it has become available.`;
 
     const reserveRoom = () => {
+
       axios
         .post(`http://localhost:8080/category/reserve/${room.id}/${props.inDate}/${props.outDate}`,
             "hello",

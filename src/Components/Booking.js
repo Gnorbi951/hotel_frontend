@@ -72,20 +72,11 @@ const Booking = (props) => {
     const { handleShowIn,inDate } = useContext(CheckInModalContext);
     const { handleShowOut,outDate} = useContext(CheckOutModalContext);
     const [ resultRooms,setResultRooms] = useState(null);
-    const currentDate = Moment(Date.now()).format('YYYY-MM-DD');
 
-    const searchForAvailableRoom = (id,inDate,outDate) => {
-        let start;
-        let end;
-
-        start = ((!inDate) ? currentDate : inDate);
-        end = ((!outDate) ? currentDate :outDate);
-
-        console.log(start)
-        console.log(end)
+    const searchForAvailableRoom = (inDate,outDate) => {
 
           axios
-            .get(`http://localhost:8080/category/get-available-categories-in-time-frame/${start}/${end}`)
+            .get(`http://localhost:8080/category/get-available-categories-in-time-frame/${inDate}/${outDate}`)
             .then((res) => {
                 setResultRooms(res.data)
             });
@@ -94,7 +85,7 @@ const Booking = (props) => {
     const CustomButton = ({click,icon,title,date}) => {
         let line;
 
-        line = title === "Guests" ? "4 Guests": !date ? currentDate: date;
+        line = title === "Guests" ? "4 Guests": date;
 
         return(
             <OptionButton onClick={click}>
@@ -115,7 +106,7 @@ const Booking = (props) => {
             />
             <ScrollAnimation animateIn="fadeIn">
                 <BookingDiv>
-                    <SearchButton onClick={() => searchForAvailableRoom(props.match.params.id,inDate,outDate)}>SEARCH</SearchButton>
+                    <SearchButton onClick={() => searchForAvailableRoom(inDate,outDate)}>SEARCH</SearchButton>
                     <CustomButton icon={faUser} title={"Guests"}/>
                     <CustomButton icon={faCalendar} click={handleShowIn} title={"Check-in"} date={inDate}/>
                     <CustomButton icon={faCalendar} click={handleShowOut} title={"Check-out"} date={outDate}/>
